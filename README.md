@@ -1,6 +1,6 @@
 # KRACKED Skill - Claude Code Plugin
 
-[![Version](https://img.shields.io/badge/version-3.3.0-blue.svg)](https://github.com/KrackedAI/kracked-skill)
+[![Version](https://img.shields.io/badge/version-3.3.0-blue.svg)](https://github.com/MoonWIRaja/kracked-skill)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 
@@ -23,6 +23,8 @@
 
 KRACKED is a structured, role-based product delivery system designed to take a product from **idea → architecture → build → deploy → monitor**.
 
+> **IMPORTANT**: This plugin is designed for **Claude Code CLI only**. It does NOT work with Cursor, Antigravity, or other AI IDEs.
+
 ### Features
 
 - **9 Specialized Roles**: Analyst → Product Manager → Architect → Tech Lead → Engineer → QA → Security → DevOps → Release Manager
@@ -34,46 +36,46 @@ KRACKED is a structured, role-based product delivery system designed to take a p
 
 ### Quick Install
 
-#### Method 1: Git Clone (Recommended - No NPM Required)
+#### Method 1: Git Clone (Recommended - Simple & Reliable)
 
 **Linux/macOS:**
 ```bash
-git clone https://github.com/moonwiraja/kracked-skill.git ~/.claude/plugins/kracked-skill
+git clone https://github.com/MoonWIRaja/kracked-skill.git ~/.claude/plugins/kracked-skill
 ```
 
 **Windows (Command Prompt/PowerShell):**
 ```cmd
-git clone https://github.com/moonwiraja/kracked-skill.git %USERPROFILE%\.claude\plugins\kracked-skill
+git clone https://github.com/MoonWIRaja/kracked-skill.git %USERPROFILE%\.claude\plugins\kracked-skill
 ```
 
 **Windows (Git Bash):**
 ```bash
-git clone https://github.com/moonwiraja/kracked-skill.git ~/.claude/plugins/kracked-skill
+git clone https://github.com/MoonWIRaja/kracked-skill.git ~/.claude/plugins/kracked-skill
 ```
 
 #### Method 2: Download ZIP
 
-1. Go to: https://github.com/moonwiraja/kracked-skill
-2. Click **Code → Download ZIP**
+1. Go to: https://github.com/MoonWIRaja/kracked-skill
+2. Click **Code** button, then **Download ZIP**
 3. Extract to:
-   - Windows: `%USERPROFILE%\.claude\plugins\kracked-skill\`
-   - Linux/macOS: `~/.claude/plugins/kracked-skill/`
+   - **Windows**: `%USERPROFILE%\.claude\plugins\kracked-skill\`
+   - **Linux/macOS**: `~/.claude/plugins/kracked-skill/`
 
 #### Method 3: Installer Script
 
 **Windows (PowerShell):**
 ```powershell
-curl -L https://raw.githubusercontent.com/moonwiraja/kracked-skill/main/install.bat -o install.bat; .\install.bat
+curl -L https://raw.githubusercontent.com/MoonWIRaja/kracked-skill/main/install.bat -o install.bat; .\install.bat
 ```
 
 **Windows (CMD):**
 ```cmd
-curl -L https://raw.githubusercontent.com/moonwiraja/kracked-skill/main/install.bat -o install.bat && install.bat
+curl -L https://raw.githubusercontent.com/MoonWIRaja/kracked-skill/main/install.bat -o install.bat && install.bat
 ```
 
 **Linux/macOS:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/moonwiraja/kracked-skill/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/kracked-skill/main/install.sh | sh
 ```
 
 ### Usage
@@ -83,7 +85,8 @@ After installation, restart Claude Code and use:
 ```
 /kracked-help           # Show all commands
 /analyze                # Start discovery stage
-/language [EN|MS]       # Change language
+/language EN            # Select English
+/language MS            # Select Bahasa Melayu
 /status                 # Show project state
 ```
 
@@ -107,6 +110,9 @@ After installation, restart Claude Code and use:
 - `/language` - Display/change language
 - `/status` - Project state
 - `/rollback [stage]` - Return to previous stage
+- `/retry` - Retry failed operation
+- `/compress-context` - Reduce context usage
+- `/show [artifact]` - Display specific artifact
 
 ### Documentation
 
@@ -123,7 +129,9 @@ MIT License - see [LICENSE](LICENSE)
 
 ### Gambaran Ringkas
 
-KRACKED ialah sistem penghantaran produk berbasis-peranan berstruktur yang direka untuk mengambil produk dari **idea → seni bina → bina → pasang → pantau**.
+KRACKED adalah sistem penghantaran produk berbasis-peranan berstruktur yang direka untuk mengambil produk dari **idea → seni bina → bina → pasang → pantau**.
+
+> **PENTING**: Plugin ini direka khas untuk **Claude Code CLI sahaja**. Ia TIDAK berfungsi dengan Cursor, Antigravity, atau IDE AI yang lain.
 
 ### Ciri-ciri
 
@@ -136,46 +144,46 @@ KRACKED ialah sistem penghantaran produk berbasis-peranan berstruktur yang direk
 
 ### Pasang Pantas
 
-#### Cara 1: Git Clone (Disyorkan - Tanpa NPM)
+#### Cara 1: Git Clone (Disyorkan - Mudah & Boleh Dipercayai)
 
 **Linux/macOS:**
 ```bash
-git clone https://github.com/moonwiraja/kracked-skill.git ~/.claude/plugins/kracked-skill
+git clone https://github.com/MoonWIRaja/kracked-skill.git ~/.claude/plugins/kracked-skill
 ```
 
 **Windows (Command Prompt/PowerShell):**
 ```cmd
-git clone https://github.com/moonwiraja/kracked-skill.git %USERPROFILE%\.claude\plugins\kracked-skill
+git clone https://github.com/MoonWIRaja/kracked-skill.git %USERPROFILE%\.claude\plugins\kracked-skill
 ```
 
 **Windows (Git Bash):**
 ```bash
-git clone https://github.com/moonwiraja/kracked-skill.git ~/.claude/plugins/kracked-skill
+git clone https://github.com/MoonWIRaja/kracked-skill.git ~/.claude/plugins/kracked-skill
 ```
 
-#### Cara 2: Muat Turus ZIP
+#### Cara 2: Muat Turun ZIP
 
-1. Pergi ke: https://github.com/moonwiraja/kracked-skill
-2. Klik **Code → Download ZIP**
+1. Pergi ke: https://github.com/MoonWIRaja/kracked-skill
+2. Klik butang **Code**, kemudian **Download ZIP**
 3. Ekstrak ke:
-   - Windows: `%USERPROFILE%\.claude\plugins\kracked-skill\`
-   - Linux/macOS: `~/.claude/plugins/kracked-skill/`
+   - **Windows**: `%USERPROFILE%\.claude\plugins\kracked-skill\`
+   - **Linux/macOS**: `~/.claude/plugins/kracked-skill/`
 
 #### Cara 3: Skrip Pemasang
 
 **Windows (PowerShell):**
 ```powershell
-curl -L https://raw.githubusercontent.com/moonwiraja/kracked-skill/main/install.bat -o install.bat; .\install.bat
+curl -L https://raw.githubusercontent.com/MoonWIRaja/kracked-skill/main/install.bat -o install.bat; .\install.bat
 ```
 
 **Windows (CMD):**
 ```cmd
-curl -L https://raw.githubusercontent.com/moonwiraja/kracked-skill/main/install.bat -o install.bat && install.bat
+curl -L https://raw.githubusercontent.com/MoonWIRaja/kracked-skill/main/install.bat -o install.bat && install.bat
 ```
 
 **Linux/macOS:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/moonwiraja/kracked-skill/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/kracked-skill/main/install.sh | sh
 ```
 
 ### Penggunaan
@@ -185,7 +193,8 @@ Selepas pemasangan, mulakan semula Claude Code dan guna:
 ```
 /kracked-help           # Tunjuk semua arahan
 /analyze                # Mulakan peringkat penemuan
-/language [EN|MS]       # Tukar bahasa
+/language EN            # Pilih Bahasa Inggeris
+/language MS            # Pilih Bahasa Melayu
 /status                 # Tunjuk keadaan projek
 ```
 
@@ -201,6 +210,18 @@ Selepas pemasangan, mulakan semula Claude Code dan guna:
 | 6 | `/deployment-plan` | Strategi pemasangan |
 | 7 | `/scale-review` | Semakan pasca-pemasangan |
 
+**Arahan Multi-Ejen:**
+- `/party-mode` - Ideasi selari dengan pelbagai perspektif
+- `/swarm` - Pelaksanaan tugasan selari
+
+**Arahan Utiliti:**
+- `/language` - Papar/tukar bahasa
+- `/status` - Keadaan projek
+- `/rollback [peringkat]` - Kembali ke peringkat terdahulu
+- `/retry` - Cuba operasi yang gagal
+- `/compress-context` - Kurangkan penggunaan konteks
+- `/show [artifak]` | Papar artifak spesifik
+
 ### Dokumentasi
 
 Dokumentasi penuh: [docs/GUIDE.md](docs/GUIDE.md)
@@ -213,8 +234,17 @@ Lesen MIT - lihat [LICENSE](LICENSE)
 
 <div align="center">
 
+**Compatibility Notice**
+
+This plugin is designed exclusively for **Claude Code CLI**.
+
+It does NOT work with:
+- Cursor
+- Antigravity
+- Other AI IDEs
+
 **Built with ❤️ for Claude Code**
 
-[Homepage](https://github.com/KrackedAI/kracked-skill) • [Documentation](docs/) • [Issues](https://github.com/KrackedAI/kracked-skill/issues)
+[Homepage](https://github.com/MoonWIRaja/kracked-skill) • [Documentation](docs/) • [Issues](https://github.com/MoonWIRaja/kracked-skill/issues)
 
 </div>
