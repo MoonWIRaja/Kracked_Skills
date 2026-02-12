@@ -234,17 +234,17 @@ Lesen MIT - lihat [LICENSE](LICENSE)
 
 <div align="center">
 
-**Compatibility Notice**
+**Notis Kompatibiliti**
 
-This plugin is designed exclusively for **Claude Code CLI**.
+Plugin ini direka khas untuk **Claude Code CLI**.
 
-It does NOT work with:
+Ia TIDAK berfungsi dengan:
 - Cursor
 - Antigravity
-- Other AI IDEs
+- IDE AI yang lain
 
-**Built with ❤️ for Claude Code**
+**Dibina dengan ❤️ untuk Claude Code**
 
-[Homepage](https://github.com/MoonWIRaja/kracked-skill) • [Documentation](docs/) • [Issues](https://github.com/MoonWIRaja/kracked-skill/issues)
+[Utama Laman](https://github.com/MoonWIRaja/kracked-skill) • [Dokumentasi](docs/) • [Isu](https://github.com/MoonWIRaja/kracked-skill/issues)
 
 </div>
