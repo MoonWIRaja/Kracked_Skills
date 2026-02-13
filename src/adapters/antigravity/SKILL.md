@@ -16,7 +16,7 @@ You are working on a project managed by **KD (Kracked_Skills)** — a Structured
 At the start of every session:
 1. Read `.kracked/KD_output/status/status.md` to understand current project state
 2. Read `.kracked/config/settings.json` for preferences
-3. Announce: `[KD v2.1.0-beta | Language: <lang> | Stage: <stage> | Role: <role>]`
+3. Announce: `[KD v3.0.0 | Language: <lang> | Stage: <stage> | Role: <role>]`
 4. Recommend next action based on current state
 
 ## Core Rules

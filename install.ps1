@@ -1,6 +1,6 @@
 <# 
 .SYNOPSIS
-    Kracked_Skills (KD) v2.0.0-beta — PowerShell Installation Script (Windows)
+    Kracked_Skills (KD) v3.0.0 — PowerShell Installation Script (Windows)
     AI Skill by KRACKEDDEVS - https://krackeddevs.com/
 .PARAMETER TargetDir
     Target project directory (default: current directory)
@@ -46,7 +46,7 @@ function Show-Banner {
     Write-Host "                                                                          " -ForegroundColor Cyan
     Write-Host "  =======================================================================" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "  Kracked_Skillss v$KD_VERSION" -ForegroundColor White
+    Write-Host "  Kracked_Skills v$KD_VERSION" -ForegroundColor White
     Write-Host "  Structured Multi-Role AI Product Execution System"
     Write-Host ""
 }
