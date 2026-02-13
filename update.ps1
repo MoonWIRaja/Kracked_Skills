@@ -241,7 +241,9 @@ $tmpInstaller = [System.IO.Path]::GetTempFileName() + ".ps1"
 
 if (Get-RemoteFile -Url "$KD_RAW_URL/install.ps1" -Dest $tmpInstaller) {
     try {
-        powershell -ExecutionPolicy Bypass -File $tmpInstaller -TargetDir $TargetDir -Target $targetTools -Language $language -Force -NonInteractive
+        $scriptContent = Get-Content $tmpInstaller -Raw
+        $sb = [scriptblock]::Create($scriptContent)
+        & $sb -TargetDir $TargetDir -Target $targetTools -Language $language -Force -NonInteractive
     } catch {
         Write-Err "Update failed: $_"
         Write-Info "Restoring backup..."
