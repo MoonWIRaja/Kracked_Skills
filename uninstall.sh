@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# Kracked_Skillss (KD) - Uninstallation Script
+# Kracked_Skills (KD) - Uninstallation Script
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # ============================================================================
 
@@ -106,7 +106,7 @@ main() {
     remove_files
 
     echo ""
-    echo -e "${GREEN}  Kracked_Skillss has been uninstalled successfully.${NC}"
+    echo -e "${GREEN}  Kracked_Skills has been uninstalled successfully.${NC}"
     echo -e "  Your status.md backup has been preserved."
     echo ""
 }

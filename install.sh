@@ -11,7 +11,7 @@ set -euo pipefail
 # Constants
 # ---------------------------------------------------------------------------
 readonly KD_VERSION="3.0.0"
-readonly KD_REPO="MoonWIRaja/Kracked_Skills"
+readonly KD_REPO="MoonWIRaja/Kracked_skill"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
 readonly KD_DIR=".kracked"
 readonly KD_SITE="https://krackeddevs.com/"
@@ -85,7 +85,7 @@ Options:
   --help                      Show this help message
 
 Examples:
-  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
   bash install.sh /path/to/project --target=claude-code,cursor --language=MS
   bash install.sh . --target=all --language=EN
   bash install.sh . --non-interactive --force

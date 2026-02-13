@@ -17,7 +17,7 @@ $ErrorActionPreference = 'Stop'
 
 $KD_VERSION = "3.0.0"
 $KD_DIR = ".kracked"
-$KD_REPO = "MoonWIRaja/Kracked_Skills"
+$KD_REPO = "MoonWIRaja/Kracked_skill"
 $KD_RAW_URL = "https://raw.githubusercontent.com/$KD_REPO/main"
 
 # ---------------------------------------------------------------------------

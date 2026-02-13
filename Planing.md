@@ -51,7 +51,7 @@ Initial Release Target: v1.0.0
 
 1.4 Repository
 --------------
-GitHub: https://github.com/MoonWIRaja/Kracked_Skills
+GitHub: https://github.com/MoonWIRaja/Kracked_skill
 Official Site: https://krackeddevs.com/
 
 1.5 License
@@ -625,15 +625,15 @@ Assessment Criteria:
 
 Method 1: curl (Primary)
 ------------------------
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
 
 Method 2: wget
 --------------
-wget -qO- https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
 
 Method 3: git clone + local
 ---------------------------
-git clone https://github.com/MoonWIRaja/Kracked_Skills.git
+git clone https://github.com/MoonWIRaja/Kracked_skill.git
 cd Kracked_Skills
 bash install.sh /path/to/project
 
@@ -1249,7 +1249,7 @@ Official Site: https://krackeddevs.com/
 ## Quick Start
 
 ### Installation
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
 
 ### First Use
 /KD-analyze
@@ -1528,7 +1528,7 @@ Appendix B: Installation Example Log
 ------------------------------------
 
 ```
-$ curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
+$ curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
 
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║                                                                       ║
@@ -1618,7 +1618,7 @@ KD Quick Reference
 Official Site: https://krackeddevs.com/
 
 Installation:
-  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
 
 Commands (all start with /KD):
   /KD-analyze          Discovery phase
@@ -1651,7 +1651,7 @@ Languages:
   - MS (Bahasa Melayu)
 
 Support:
-  GitHub Issues: github.com/MoonWIRaja/Kracked_Skills/issues
+  GitHub Issues: github.com/MoonWIRaja/Kracked_skill/issues
   Official Site: https://krackeddevs.com/
 ```
 

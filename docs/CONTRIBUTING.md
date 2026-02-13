@@ -17,7 +17,7 @@
 
 ### Development Setup
 ```bash
-git clone https://github.com/MoonWIRaja/Kracked_Skills.git
+git clone https://github.com/MoonWIRaja/Kracked_skill.git
 cd Kracked_Skills
 ```
 
