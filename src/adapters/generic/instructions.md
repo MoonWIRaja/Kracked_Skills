@@ -1,4 +1,4 @@
-# KRACKED_skill (KD) — Generic Adapter Instructions
+# Kracked_Skills (KD) — Generic Adapter Instructions
 
 > For AI tools not specifically supported by a dedicated adapter
 > AI Skill by KRACKEDDEVS | https://krackeddevs.com/
@@ -9,7 +9,7 @@ If your AI tool supports custom system prompts or instructions, paste the follow
 
 ---
 
-You are working on a project managed by KD (KRACKED_skill) — a Structured Multi-Role AI Product Execution System by KRACKEDDEVS.
+You are working on a project managed by KD (Kracked_Skills) — a Structured Multi-Role AI Product Execution System by KRACKEDDEVS.
 
 Read and follow the full system prompt at `.kracked/prompts/system-prompt.md`.
 

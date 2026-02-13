@@ -15,7 +15,7 @@
 Run in your project root directory:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 ```
 
 The installer will:

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Language Handling
+# Kracked_Skills (KD) - Language Handling
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # ============================================================================
 

@@ -17,8 +17,8 @@
 
 ### Development Setup
 ```bash
-git clone https://github.com/MoonWIRaja/Kracked_skill.git
-cd Kracked_skill
+git clone https://github.com/MoonWIRaja/Kracked_Skills.git
+cd Kracked_Skills
 ```
 
 ### File Structure

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Installation Script
+# Kracked_Skills (KD) - Installation Script
 # AI Skill by KRACKEDDEVS
 # https://krackeddevs.com/
 # ============================================================================
@@ -11,7 +11,7 @@ set -euo pipefail
 # Constants
 # ---------------------------------------------------------------------------
 readonly KD_VERSION="3.0.0"
-readonly KD_REPO="MoonWIRaja/Kracked_skill"
+readonly KD_REPO="MoonWIRaja/Kracked_Skills"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
 readonly KD_DIR=".kracked"
 readonly KD_SITE="https://krackeddevs.com/"
@@ -52,7 +52,7 @@ print_banner() {
 ╚═══════════════════════════════════════════════════════════════════════╝
 BANNER
     echo -e "${NC}"
-    echo -e "${BOLD}  KRACKED_skill v${KD_VERSION}${NC}"
+    echo -e "${BOLD}  Kracked_Skills v${KD_VERSION}${NC}"
     echo -e "  Structured Multi-Role AI Product Execution System"
     echo ""
 }
@@ -85,7 +85,7 @@ Options:
   --help                      Show this help message
 
 Examples:
-  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
   bash install.sh /path/to/project --target=claude-code,cursor --language=MS
   bash install.sh . --target=all --language=EN
   bash install.sh . --non-interactive --force
@@ -666,7 +666,7 @@ setup_antigravity() {
     else
         log_warn "Could not download SKILL.md, creating local copy..."
         echo '---
-name: KRACKED_skill (KD)
+name: Kracked_Skills (KD)
 description: Structured Multi-Role AI Product Execution System by KRACKEDDEVS
 ---
 Read .kracked/prompts/system-prompt.md for full instructions.

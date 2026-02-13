@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Validation Script
+# Kracked_Skills (KD) - Validation Script
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # ============================================================================
 

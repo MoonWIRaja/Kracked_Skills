@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Utility Functions
+# Kracked_Skills (KD) - Utility Functions
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # ============================================================================
 

@@ -1,7 +1,7 @@
-# PLANNING.md - KRACKED_skill
+# PLANNING.md - Kracked_Skills
 
 ```
-# KRACKED_skill - Project Planning Document
+# Kracked_Skills - Project Planning Document
 # Version: 1.0.0
 # Created: 2026
 # Status: Planning Phase
@@ -36,11 +36,11 @@ TABLE OF CONTENTS
 
 1.1 Project Name
 ----------------
-KRACKED_skill
+Kracked_Skills
 
 1.2 Project Description
 -----------------------
-KRACKED_skill adalah sistem eksekusi produk AI berbilang peranan yang berstruktur.
+Kracked_Skills adalah sistem eksekusi produk AI berbilang peranan yang berstruktur.
 Sistem ini direka untuk membantu pembangunan produk dari peringkat idea sehingga
 deployment dan monitoring, dengan pendekatan yang terkawal dan boleh diaudit.
 
@@ -51,7 +51,7 @@ Initial Release Target: v1.0.0
 
 1.4 Repository
 --------------
-GitHub: https://github.com/MoonWIRaja/Kracked_skill
+GitHub: https://github.com/MoonWIRaja/Kracked_Skills
 Official Site: https://krackeddevs.com/
 
 1.5 License
@@ -65,7 +65,7 @@ MIT License
 
 1.7 Key Differentiators from BMAD
 ---------------------------------
-| Aspect              | BMAD                    | KRACKED_skill           |
+| Aspect              | BMAD                    | Kracked_Skills           |
 |---------------------|-------------------------|-------------------------|
 | Distribution        | NPM/npx                 | Bash script + curl/wget |
 | Multi-Agent         | None                    | Party Mode & Swarm      |
@@ -80,7 +80,7 @@ MIT License
 
 1.8 Installation Model
 ----------------------
-KRACKED_skill dipasang untuk SETIAP PROJEK secara individu. Ini membolehkan:
+Kracked_Skills dipasang untuk SETIAP PROJEK secara individu. Ini membolehkan:
 - Konfigurasi berasingan untuk setiap projek
 - Bahasa yang berbeza untuk projek berbeza
 - Status tracking yang unik per projek
@@ -327,7 +327,7 @@ Journey 2: Existing Project (Team)
 6.1 Complete Directory Tree
 ---------------------------
 
-Kracked_skill/
+Kracked_Skills/
 │
 ├── install.sh                         # Main installation script
 ├── uninstall.sh                       # Uninstallation script
@@ -625,16 +625,16 @@ Assessment Criteria:
 
 Method 1: curl (Primary)
 ------------------------
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 
 Method 2: wget
 --------------
-wget -qO- https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 
 Method 3: git clone + local
 ---------------------------
-git clone https://github.com/MoonWIRaja/Kracked_skill.git
-cd Kracked_skill
+git clone https://github.com/MoonWIRaja/Kracked_Skills.git
+cd Kracked_Skills
 bash install.sh /path/to/project
 
 8.2 Installation Parameters
@@ -1236,7 +1236,7 @@ Decision Thresholds:
 ------------------------
 
 ```markdown
-# KRACKED_skill
+# Kracked_Skills
 
 [ASCII Logo - KD/KRACKEDDEVS]
 
@@ -1249,7 +1249,7 @@ Official Site: https://krackeddevs.com/
 ## Quick Start
 
 ### Installation
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 
 ### First Use
 /KD-analyze
@@ -1528,7 +1528,7 @@ Appendix B: Installation Example Log
 ------------------------------------
 
 ```
-$ curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+$ curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║                                                                       ║
@@ -1618,7 +1618,7 @@ KD Quick Reference
 Official Site: https://krackeddevs.com/
 
 Installation:
-  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 
 Commands (all start with /KD):
   /KD-analyze          Discovery phase
@@ -1651,7 +1651,7 @@ Languages:
   - MS (Bahasa Melayu)
 
 Support:
-  GitHub Issues: github.com/MoonWIRaja/Kracked_skill/issues
+  GitHub Issues: github.com/MoonWIRaja/Kracked_Skills/issues
   Official Site: https://krackeddevs.com/
 ```
 

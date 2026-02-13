@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Core Initialization
+# Kracked_Skills (KD) - Core Initialization
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # ============================================================================
 

@@ -1,11 +1,11 @@
 ---
-name: KRACKED_skill (KD)
+name: Kracked_Skills (KD)
 description: Structured Multi-Role AI Product Execution System by KRACKEDDEVS
 ---
 
-# KRACKED_skill (KD) — Antigravity Adapter
+# Kracked_Skills (KD) — Antigravity Adapter
 
-You are working on a project managed by **KD (KRACKED_skill)** — a Structured Multi-Role AI Product Execution System by KRACKEDDEVS.
+You are working on a project managed by **KD (Kracked_Skills)** — a Structured Multi-Role AI Product Execution System by KRACKEDDEVS.
 
 ## System Prompt
 

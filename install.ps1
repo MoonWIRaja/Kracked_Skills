@@ -1,6 +1,6 @@
 <# 
 .SYNOPSIS
-    KRACKED_skill (KD) v2.0.0-beta — PowerShell Installation Script (Windows)
+    Kracked_Skills (KD) v2.0.0-beta — PowerShell Installation Script (Windows)
     AI Skill by KRACKEDDEVS - https://krackeddevs.com/
 .PARAMETER TargetDir
     Target project directory (default: current directory)
@@ -29,7 +29,7 @@ $ErrorActionPreference = "Stop"
 
 # Constants
 $KD_VERSION = "3.0.0"
-$KD_REPO = "MoonWIRaja/Kracked_skill"
+$KD_REPO = "MoonWIRaja/Kracked_Skills"
 $KD_RAW_URL = "https://raw.githubusercontent.com/$KD_REPO/main"
 $KD_DIR = ".kracked"
 $KD_SITE = "https://krackeddevs.com/"
@@ -46,7 +46,7 @@ function Show-Banner {
     Write-Host "                                                                          " -ForegroundColor Cyan
     Write-Host "  =======================================================================" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "  Kracked_Skills v$KD_VERSION" -ForegroundColor White
+    Write-Host "  Kracked_Skillss v$KD_VERSION" -ForegroundColor White
     Write-Host "  Structured Multi-Role AI Product Execution System"
     Write-Host ""
 }
@@ -536,7 +536,7 @@ function Setup-Antigravity {
     if (-not (Get-RemoteFile -Url $url -Dest $dest)) {
         Write-Warn "Could not download SKILL.md, creating local copy..."
         $content = '---
-name: KRACKED_skill (KD)
+name: Kracked_Skills (KD)
 description: Structured Multi-Role AI Product Execution System by KRACKEDDEVS
 ---
 Read .kracked/prompts/system-prompt.md for full instructions.

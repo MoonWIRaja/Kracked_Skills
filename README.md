@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">KRACKED_skill (KD)</h1>
+  <h1 align="center">Kracked_Skills (KD)</h1>
   <p align="center">
     <strong>Structured Multi-Role AI Product Execution System</strong>
   </p>
@@ -25,24 +25,24 @@
 
 **macOS / Linux** (bash + curl):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 ```
 
 **Windows** (PowerShell — no WSL/bash needed):
 ```powershell
-irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.ps1 | iex
 ```
 
 **Windows** (Git Bash / WSL):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
 ```
 
 ### Non-Interactive Install
 
 ```bash
 # macOS / Linux (multi-select targets)
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash -s -- --target=claude-code,cursor --language=EN --non-interactive
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash -s -- --target=claude-code,cursor --language=EN --non-interactive
 
 # Windows PowerShell (multi-select targets)
 .\install.ps1 -Target "claude-code,cursor" -Language EN -NonInteractive
@@ -238,7 +238,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 **KRACKEDDEVS** builds AI-powered developer tools that bring structure and consistency to software development.
 
 - 🌐 **Website:** [krackeddevs.com](https://krackeddevs.com/)
-- 📦 **GitHub:** [github.com/MoonWIRaja/Kracked_skill](https://github.com/MoonWIRaja/Kracked_skill)
+- 📦 **GitHub:** [github.com/MoonWIRaja/Kracked_Skills](https://github.com/MoonWIRaja/Kracked_Skills)
 
 ---
 

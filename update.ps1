@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    KRACKED_skill (KD) v2.0.0-beta - PowerShell Update Script (Windows)
+    Kracked_Skillss (KD) v3.0.0 - PowerShell Update Script (Windows)
     AI Skill by KRACKEDDEVS - https://krackeddevs.com/
 .PARAMETER TargetDir
     Target project directory (default: current directory)
@@ -15,9 +15,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$KD_VERSION = "2.1.0-beta"
+$KD_VERSION = "3.0.0"
 $KD_DIR = ".kracked"
-$KD_REPO = "MoonWIRaja/Kracked_skill"
+$KD_REPO = "MoonWIRaja/Kracked_Skills"
 $KD_RAW_URL = "https://raw.githubusercontent.com/$KD_REPO/main"
 
 # ---------------------------------------------------------------------------
@@ -183,7 +183,7 @@ function Get-CurrentLanguage {
 # ---------------------------------------------------------------------------
 Write-Host ""
 Write-Host "  ========================================" -ForegroundColor Cyan
-Write-Host "    KD Update - KRACKED_skill" -ForegroundColor White
+Write-Host "    KD Update - Kracked_Skillss" -ForegroundColor White
 Write-Host "    AI Skill by KRACKEDDEVS" -ForegroundColor White
 Write-Host "  ========================================" -ForegroundColor Cyan
 Write-Host ""
@@ -263,14 +263,11 @@ Restore-Config -BackupDir $backupDir
 Write-Host ""
 Write-Ok "KD updated to v$latestVersion!"
 Write-Host ""
-Write-Host "  What's new:" -ForegroundColor White
-Write-Host "    * Type " -NoNewline
-Write-Host "/KD" -ForegroundColor Cyan -NoNewline
-Write-Host " for the interactive command menu"
-Write-Host "    * New " -NoNewline
-Write-Host "/KD-brainstorm" -ForegroundColor Cyan -NoNewline
-Write-Host " stage for ideation"
-Write-Host "    * Named agent personalities in multi-agent modes"
-Write-Host "    * Auto-debug before status updates"
-Write-Host "    * Organized epics-and-stories directory"
+Write-Host "  What's new in v3.0.0:" -ForegroundColor White
+Write-Host "    * Full rebranding to Kracked_Skillss"
+Write-Host "    * Senior Full Stack Architect persona (Frontend + Backend)"
+Write-Host "    * New commands: /KD-kickoff, /KD-api-design, /KD-refactor, /KD-test"
+Write-Host "    * Advanced Ultrathink protocol for multi-dimensional analysis"
+Write-Host "    * Bulletproof Backend standards (OWASP compliance, Zod validation)"
+Write-Host "    * Enhanced interactive menu with 83+ commands"
 Write-Host ""

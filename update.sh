@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) v2.0.0-beta — Update Script
+# Kracked_Skillss (KD) v3.0.0 — Update Script
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # Works on: macOS, Linux, Git Bash (Windows), WSL
 # ============================================================================
 
 set -euo pipefail
 
-readonly KD_VERSION="2.1.0-beta"
+readonly KD_VERSION="3.0.0"
 readonly KD_DIR=".kracked"
-readonly KD_REPO="MoonWIRaja/Kracked_skill"
+readonly KD_REPO="MoonWIRaja/Kracked_Skills"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
 
 readonly RED='\033[0;31m'
@@ -173,7 +173,7 @@ get_current_language() {
 main() {
     echo ""
     echo -e "  ${BOLD}========================================${NC}"
-    echo -e "  ${BOLD}  KD Update — KRACKED_skill${NC}"
+    echo -e "  ${BOLD}  KD Update — Kracked_Skillss${NC}"
     echo -e "  ${BOLD}  AI Skill by KRACKEDDEVS${NC}"
     echo -e "  ${BOLD}========================================${NC}"
     echo ""
@@ -255,12 +255,13 @@ main() {
     echo ""
     log_success "KD updated to v${latest_version}!"
     echo ""
-    echo -e "  ${BOLD}What's new:${NC}"
-    echo -e "    • Type ${CYAN}/KD${NC} for the interactive command menu"
-    echo -e "    • New ${CYAN}/KD-brainstorm${NC} stage for ideation"
-    echo -e "    • Named agent personalities in multi-agent modes"
-    echo -e "    • Auto-debug before status updates"
-    echo -e "    • Organized epics-and-stories directory"
+    echo -e "  ${BOLD}What's new in v3.0.0:${NC}"
+    echo -e "    • Full rebranding to Kracked_Skillss"
+    echo -e "    • Senior Full Stack Architect persona (Frontend + Backend)"
+    echo -e "    • New commands: /KD-kickoff, /KD-api-design, /KD-refactor, /KD-test"
+    echo -e "    • Advanced Ultrathink protocol for multi-dimensional analysis"
+    echo -e "    • Bulletproof Backend standards (OWASP compliance, Zod validation)"
+    echo -e "    • Enhanced interactive menu with 83+ commands"
     echo ""
 }
 

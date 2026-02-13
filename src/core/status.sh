@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Status Management
+# Kracked_Skills (KD) - Status Management
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # ============================================================================
 

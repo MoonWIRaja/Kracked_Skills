@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Validation Test
+# Kracked_Skills (KD) - Validation Test
 # Tests the validation script
 # ============================================================================
 

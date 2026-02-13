@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "KD Settings",
-  "description": "KRACKED_skill configuration schema",
+  "description": "Kracked_Skills configuration schema",
   "type": "object",
   "required": ["version", "language", "target_tool"],
   "properties": {

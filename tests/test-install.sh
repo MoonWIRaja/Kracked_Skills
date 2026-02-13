@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# KRACKED_skill (KD) - Install Test
+# Kracked_Skills (KD) - Install Test
 # Tests the installation process
 # ============================================================================
 
