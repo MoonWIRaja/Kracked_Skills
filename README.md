@@ -196,19 +196,34 @@ KD_output/                      # All AI-generated output
 
 ---
 
-## 🔄 Updates
+## 🔄 Maintenance
 
+### Update to Latest Version
 **macOS / Linux / Git Bash:**
 ```bash
-bash update.sh          # Check for and apply updates
-bash validate.sh        # Validate installation integrity
-bash uninstall.sh       # Remove KD from project
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/update.sh | bash
 ```
 
 **Windows PowerShell:**
 ```powershell
-.\update.ps1            # Check for and apply updates
-.\install.ps1 -Force    # Reinstall / force update
+irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/update.ps1 | iex
+```
+
+### Validation
+Check if your installation is healthy and all required files are present:
+```bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/validate.sh | bash
+```
+
+### Uninstallation
+**macOS / Linux / Git Bash:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/uninstall.sh | bash
+```
+
+**Windows PowerShell:**
+```powershell
+irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/uninstall.ps1 | iex
 ```
 
 ---
