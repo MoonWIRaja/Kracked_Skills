@@ -230,24 +230,32 @@ main() {
 
     # Download and run installer
     log_info "Downloading update..."
-    local install_script
-    install_script=$(mktemp)
-
-    if download_file "${KD_RAW_URL}/install.sh" "$install_script"; then
-        bash "$install_script" "$TARGET_DIR" \
-            --target="$target_tools" \
-            --language="$language" \
-            --force \
-            --non-interactive
-
-        rm -f "$install_script"
+    
+    local cmd=""
+    if command -v curl &>/dev/null; then
+        cmd="curl -fsSL"
+    elif command -v wget &>/dev/null; then
+        cmd="wget -qO-"
     else
-        rm -f "$install_script"
-        log_error "Failed to download update."
+        log_error "Neither curl nor wget found."
         log_info "Restoring backup..."
         restore_config "$backup_dir"
         exit 1
     fi
+
+    if $cmd "${KD_RAW_URL}/install.sh" | bash -s -- "$TARGET_DIR" \
+        --target="$target_tools" \
+        --language="$language" \
+        --force \
+        --non-interactive; then
+        log_success "Installer completed successfully."
+    else
+        log_error "Update failed during installation."
+        log_info "Restoring backup..."
+        restore_config "$backup_dir"
+        exit 1
+    fi
+
 
     # Restore user config and output
     restore_config "$backup_dir"
