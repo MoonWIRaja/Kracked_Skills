@@ -76,7 +76,7 @@ remove_files() {
 # ---------------------------------------------------------------------------
 confirm_uninstall() {
     echo ""
-    echo -e "  ${BOLD}KD Uninstallation${NC}"
+    echo -e "  ${BOLD}Kracked_Skills Uninstallation${NC}"
     echo -e "  Directory: ${CYAN}$(cd "$TARGET_DIR" && pwd)${NC}"
     echo ""
     echo -e "  ${YELLOW}This will remove:${NC}"

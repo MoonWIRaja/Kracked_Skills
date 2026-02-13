@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Kracked_Skillss (KD) v3.0.0 - PowerShell Update Script (Windows)
+    Kracked_Skills (KD) v3.0.0 - PowerShell Update Script (Windows)
     AI Skill by KRACKEDDEVS - https://krackeddevs.com/
 .PARAMETER TargetDir
     Target project directory (default: current directory)
@@ -183,7 +183,7 @@ function Get-CurrentLanguage {
 # ---------------------------------------------------------------------------
 Write-Host ""
 Write-Host "  ========================================" -ForegroundColor Cyan
-Write-Host "    KD Update - Kracked_Skillss" -ForegroundColor White
+Write-Host "    KD Update - Kracked_Skills" -ForegroundColor White
 Write-Host "    AI Skill by KRACKEDDEVS" -ForegroundColor White
 Write-Host "  ========================================" -ForegroundColor Cyan
 Write-Host ""
@@ -264,7 +264,7 @@ Write-Host ""
 Write-Ok "KD updated to v$latestVersion!"
 Write-Host ""
 Write-Host "  What's new in v3.0.0:" -ForegroundColor White
-Write-Host "    * Full rebranding to Kracked_Skillss"
+Write-Host "    * Full rebranding to Kracked_Skills"
 Write-Host "    * Senior Full Stack Architect persona (Frontend + Backend)"
 Write-Host "    * New commands: /KD-kickoff, /KD-api-design, /KD-refactor, /KD-test"
 Write-Host "    * Advanced Ultrathink protocol for multi-dimensional analysis"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# Kracked_Skillss (KD) v3.0.0 — Update Script
+# Kracked_Skills (KD) v3.0.0 — Update Script
 # AI Skill by KRACKEDDEVS | https://krackeddevs.com/
 # Works on: macOS, Linux, Git Bash (Windows), WSL
 # ============================================================================
@@ -173,7 +173,7 @@ get_current_language() {
 main() {
     echo ""
     echo -e "  ${BOLD}========================================${NC}"
-    echo -e "  ${BOLD}  KD Update — Kracked_Skillss${NC}"
+    echo -e "  ${BOLD}  KD Update — Kracked_Skills${NC}"
     echo -e "  ${BOLD}  AI Skill by KRACKEDDEVS${NC}"
     echo -e "  ${BOLD}========================================${NC}"
     echo ""
@@ -256,7 +256,7 @@ main() {
     log_success "KD updated to v${latest_version}!"
     echo ""
     echo -e "  ${BOLD}What's new in v3.0.0:${NC}"
-    echo -e "    • Full rebranding to Kracked_Skillss"
+    echo -e "    • Full rebranding to Kracked_Skills"
     echo -e "    • Senior Full Stack Architect persona (Frontend + Backend)"
     echo -e "    • New commands: /KD-kickoff, /KD-api-design, /KD-refactor, /KD-test"
     echo -e "    • Advanced Ultrathink protocol for multi-dimensional analysis"

@@ -1,6 +1,6 @@
 ---
 name: 'KD-kickoff'
-description: 'Kracked_Skillss v3.0.0 command'
+description: 'Kracked_Skills v3.0.0 command'
 ---
 
-Execute the 'KD-kickoff' protocol using the Kracked_Skillss system prompt.
+Execute the 'KD-kickoff' protocol using the Kracked_Skills system prompt.
