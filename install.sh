@@ -10,7 +10,7 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-readonly KD_VERSION="2.0.0-beta"
+readonly KD_VERSION="2.1.0-beta"
 readonly KD_REPO="MoonWIRaja/Kracked_skill"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
 readonly KD_DIR=".kracked"
@@ -586,6 +586,30 @@ Read .kracked/prompts/system-prompt.md for full instructions.
 Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest"
     fi
 
+    # Deploy slash command files
+    local cmd_dir="${TARGET_DIR}/.claude/commands"
+    mkdir -p "$cmd_dir"
+    local cmd_names=(
+        KD KD-analyze KD-architecture KD-brainstorm KD-build-agent KD-build-module KD-build-workflow
+        KD-code-review KD-deployment-plan KD-dev-story KD-doc-project KD-domain-research KD-epics-and-stories
+        KD-fix-course KD-game-arch KD-game-architect KD-game-brainstorm KD-game-brief KD-game-designer
+        KD-game-dev KD-game-dev-story KD-game-gdd KD-game-narrative KD-game-qa KD-game-scrum-master
+        KD-game-solo KD-game-story KD-game-test-auto KD-game-test-design KD-game-test-perf KD-game-test-plan
+        KD-game-writer KD-help KD-idea-coach KD-idea-design-thinking KD-idea-innovation KD-idea-presenter
+        KD-idea-problem-solving KD-idea-solver KD-idea-storyteller KD-idea-storytelling KD-idea-strategist
+        KD-market-research KD-party-mode KD-prd KD-product-brief KD-project-context KD-qa-automate KD-quick-dev
+        KD-quick-spec KD-retrospective KD-role-analyst KD-role-architect KD-role-bmad-master KD-role-dev
+        KD-role-pm KD-role-qa KD-role-scrum-master KD-role-solo-dev KD-role-tech-writer KD-role-ux
+        KD-scale-review KD-sprint-planning KD-sprint-status KD-status KD-swarm KD-tech-research KD-test-arch
+        KD-test-atdd KD-test-automate KD-test-ci KD-test-design KD-test-frame KD-test-nfr KD-test-teach
+        KD-test-trace KD-ux-design KD-validate KD-validate-agent KD-validate-workflow
+    )
+    for cmd in "${cmd_names[@]}"; do
+        download_file "${KD_RAW_URL}/src/adapters/claude-code/commands/${cmd}.md" \
+            "${cmd_dir}/${cmd}.md" 2>/dev/null || true
+    done
+    log_verbose "Deployed ${#cmd_names[@]} slash commands to .claude/commands/"
+
     log_success "Claude Code setup complete."
 }
 
@@ -602,6 +626,30 @@ setup_cursor() {
 Read .kracked/prompts/system-prompt.md for full instructions.
 Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest"
     fi
+
+    # Deploy slash command files
+    local cmd_dir="${TARGET_DIR}/.cursor/commands"
+    mkdir -p "$cmd_dir"
+    local cmd_names=(
+        KD KD-analyze KD-architecture KD-brainstorm KD-build-agent KD-build-module KD-build-workflow
+        KD-code-review KD-deployment-plan KD-dev-story KD-doc-project KD-domain-research KD-epics-and-stories
+        KD-fix-course KD-game-arch KD-game-architect KD-game-brainstorm KD-game-brief KD-game-designer
+        KD-game-dev KD-game-dev-story KD-game-gdd KD-game-narrative KD-game-qa KD-game-scrum-master
+        KD-game-solo KD-game-story KD-game-test-auto KD-game-test-design KD-game-test-perf KD-game-test-plan
+        KD-game-writer KD-help KD-idea-coach KD-idea-design-thinking KD-idea-innovation KD-idea-presenter
+        KD-idea-problem-solving KD-idea-solver KD-idea-storyteller KD-idea-storytelling KD-idea-strategist
+        KD-market-research KD-party-mode KD-prd KD-product-brief KD-project-context KD-qa-automate KD-quick-dev
+        KD-quick-spec KD-retrospective KD-role-analyst KD-role-architect KD-role-bmad-master KD-role-dev
+        KD-role-pm KD-role-qa KD-role-scrum-master KD-role-solo-dev KD-role-tech-writer KD-role-ux
+        KD-scale-review KD-sprint-planning KD-sprint-status KD-status KD-swarm KD-tech-research KD-test-arch
+        KD-test-atdd KD-test-automate KD-test-ci KD-test-design KD-test-frame KD-test-nfr KD-test-teach
+        KD-test-trace KD-ux-design KD-validate KD-validate-agent KD-validate-workflow
+    )
+    for cmd in "${cmd_names[@]}"; do
+        download_file "${KD_RAW_URL}/src/adapters/cursor/commands/${cmd}.md" \
+            "${cmd_dir}/${cmd}.md" 2>/dev/null || true
+    done
+    log_verbose "Deployed ${#cmd_names[@]} slash commands to .cursor/commands/"
 
     log_success "Cursor setup complete."
 }
@@ -624,6 +672,30 @@ description: Structured Multi-Role AI Product Execution System by KRACKEDDEVS
 Read .kracked/prompts/system-prompt.md for full instructions.
 Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest"
     fi
+
+    # Deploy slash command files (Antigravity uses .agent/workflows/)
+    local cmd_dir="${TARGET_DIR}/.agent/workflows"
+    mkdir -p "$cmd_dir"
+    local cmd_names=(
+        KD KD-analyze KD-architecture KD-brainstorm KD-build-agent KD-build-module KD-build-workflow
+        KD-code-review KD-deployment-plan KD-dev-story KD-doc-project KD-domain-research KD-epics-and-stories
+        KD-fix-course KD-game-arch KD-game-architect KD-game-brainstorm KD-game-brief KD-game-designer
+        KD-game-dev KD-game-dev-story KD-game-gdd KD-game-narrative KD-game-qa KD-game-scrum-master
+        KD-game-solo KD-game-story KD-game-test-auto KD-game-test-design KD-game-test-perf KD-game-test-plan
+        KD-game-writer KD-help KD-idea-coach KD-idea-design-thinking KD-idea-innovation KD-idea-presenter
+        KD-idea-problem-solving KD-idea-solver KD-idea-storyteller KD-idea-storytelling KD-idea-strategist
+        KD-market-research KD-party-mode KD-prd KD-product-brief KD-project-context KD-qa-automate KD-quick-dev
+        KD-quick-spec KD-retrospective KD-role-analyst KD-role-architect KD-role-bmad-master KD-role-dev
+        KD-role-pm KD-role-qa KD-role-scrum-master KD-role-solo-dev KD-role-tech-writer KD-role-ux
+        KD-scale-review KD-sprint-planning KD-sprint-status KD-status KD-swarm KD-tech-research KD-test-arch
+        KD-test-atdd KD-test-automate KD-test-ci KD-test-design KD-test-frame KD-test-nfr KD-test-teach
+        KD-test-trace KD-ux-design KD-validate KD-validate-agent KD-validate-workflow
+    )
+    for cmd in "${cmd_names[@]}"; do
+        download_file "${KD_RAW_URL}/src/adapters/antigravity/workflows/${cmd}.md" \
+            "${cmd_dir}/${cmd}.md" 2>/dev/null || true
+    done
+    log_verbose "Deployed ${#cmd_names[@]} slash commands to .agent/workflows/"
 
     log_success "Antigravity setup complete."
 }
