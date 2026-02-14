@@ -374,32 +374,10 @@ download_file() {
 create_directories() {
     log_info "Creating KD directory structure..."
 
-    local dirs=(
-        "${KD_DIR}"
-        "${KD_DIR}/prompts"
-        "${KD_DIR}/prompts/roles"
-        "${KD_DIR}/prompts/stages"
-        "${KD_DIR}/prompts/multi-agent"
-        "${KD_DIR}/templates"
-        "${KD_DIR}/checklists"
-        "${KD_DIR}/workflows"
-        "${KD_DIR}/config"
-        "${KD_DIR}/config/language"
-        "${KD_DIR}/KD_output"
-        "${KD_DIR}/KD_output/status"
-        "${KD_DIR}/KD_output/brainstorm"
-        "${KD_DIR}/KD_output/product-brief"
-        "${KD_DIR}/KD_output/PRD"
-        "${KD_DIR}/KD_output/architecture"
-        "${KD_DIR}/KD_output/epics-and-stories"
-        "${KD_DIR}/KD_output/code-review"
-        "${KD_DIR}/KD_output/deployment"
-        "${KD_DIR}/KD_output/release"
-        "${KD_DIR}/KD_output/decisions"
-        "${KD_DIR}/KD_output/risks"
-    )
+    # Use space-separated string for Bash 3.2 compatibility
+    local dirs="${KD_DIR} ${KD_DIR}/prompts ${KD_DIR}/prompts/roles ${KD_DIR}/prompts/stages ${KD_DIR}/prompts/multi-agent ${KD_DIR}/templates ${KD_DIR}/checklists ${KD_DIR}/workflows ${KD_DIR}/config ${KD_DIR}/config/language ${KD_DIR}/KD_output ${KD_DIR}/KD_output/status ${KD_DIR}/KD_output/brainstorm ${KD_DIR}/KD_output/product-brief ${KD_DIR}/KD_output/PRD ${KD_DIR}/KD_output/architecture ${KD_DIR}/KD_output/epics-and-stories ${KD_DIR}/KD_output/code-review ${KD_DIR}/KD_output/deployment ${KD_DIR}/KD_output/release ${KD_DIR}/KD_output/decisions ${KD_DIR}/KD_output/risks"
 
-    for dir in "${dirs[@]}"; do
+    for dir in $dirs; do
         mkdir -p "${TARGET_DIR}/${dir}"
         log_verbose "Created: ${dir}/"
     done
@@ -422,29 +400,29 @@ download_files() {
         "${KD_DIR}/prompts/system-prompt.md" "System Prompt"
 
     # ---- Roles ----
-    local roles=("_role-template" "analyst" "product-manager" "architect" "tech-lead" "engineer" "qa" "security" "devops" "release-manager")
-    for role in "${roles[@]}"; do
+    local roles="_role-template analyst product-manager architect tech-lead engineer qa security devops release-manager"
+    for role in $roles; do
         download_and_track "${base}/prompts/roles/${role}.md" \
             "${KD_DIR}/prompts/roles/${role}.md" "Role: ${role}"
     done
 
     # ---- Stages ----
-    local stages=("_stage-template" "discovery" "brainstorm" "requirements" "architecture" "implementation" "quality" "deployment" "release")
-    for stage in "${stages[@]}"; do
+    local stages="_stage-template discovery brainstorm requirements architecture implementation quality deployment release"
+    for stage in $stages; do
         download_and_track "${base}/prompts/stages/${stage}.md" \
             "${KD_DIR}/prompts/stages/${stage}.md" "Stage: ${stage}"
     done
 
     # ---- Multi-Agent ----
-    local multi=("party-mode" "agent-swarm" "confidence-scoring" "conflict-resolution" "aggregation")
-    for m in "${multi[@]}"; do
+    local multi="party-mode agent-swarm confidence-scoring conflict-resolution aggregation"
+    for m in $multi; do
         download_and_track "${base}/prompts/multi-agent/${m}.md" \
             "${KD_DIR}/prompts/multi-agent/${m}.md" "Multi-Agent: ${m}"
     done
 
     # ---- Templates ----
-    local templates=("status" "product-brief" "prd" "architecture" "story-card" "deployment-plan" "release-notes" "decision-log" "risk-register")
-    for tmpl in "${templates[@]}"; do
+    local templates="status product-brief prd architecture story-card deployment-plan release-notes decision-log risk-register"
+    for tmpl in $templates; do
         download_and_track "${base}/templates/${tmpl}.md" \
             "${KD_DIR}/templates/${tmpl}.md" "Template: ${tmpl}"
     done
