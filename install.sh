@@ -425,15 +425,15 @@ download_files() {
     done
 
     # ---- Checklists ----
-    local checklists=("stage-completion" "decision-validation" "checkpoint-approval" "security-audit" "pre-deployment" "code-quality")
-    for cl in "${checklists[@]}"; do
+    local checklists="stage-completion decision-validation checkpoint-approval security-audit pre-deployment code-quality"
+    for cl in $checklists; do
         download_and_track "${base}/checklists/${cl}.md" \
             "${KD_DIR}/checklists/${cl}.md" "Checklist: ${cl}"
     done
 
     # ---- Workflows ----
-    local workflows=("main" "quick-start" "full-product" "maintenance")
-    for wf in "${workflows[@]}"; do
+    local workflows="main quick-start full-product maintenance"
+    for wf in $workflows; do
         download_and_track "${base}/workflows/${wf}.md" \
             "${KD_DIR}/workflows/${wf}.md" "Workflow: ${wf}"
     done
