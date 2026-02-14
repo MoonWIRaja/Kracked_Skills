@@ -211,8 +211,22 @@ ask_target() {
     echo -e "    ${YELLOW}[A]${NC} All of the above"
     echo ""
 
+    # Disable exit-on-error for interactive loop
+    set +e
+    
     while true; do
-        read -rp "  Enter choice(s) [1-3, A]: " choice < /dev/tty
+        if [ -t 0 ]; then
+            read -rp "  Enter choice(s) [1-3, A]: " choice
+        else
+            # If piped, try reading from tty
+            if [ -c /dev/tty ]; then
+                read -rp "  Enter choice(s) [1-3, A]: " choice < /dev/tty
+            else
+                log_error "Cannot read input (no tty). Use --non-interactive or run script directly."
+                exit 1
+            fi
+        fi
+
         choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
 
         if [[ "$choice" == "A" ]]; then
@@ -240,6 +254,9 @@ ask_target() {
 
         echo -e "  ${RED}Invalid choice. Enter numbers 1-3 separated by commas, or A for all.${NC}"
     done
+    
+    # Re-enable exit-on-error
+    set -e
 }
 
 ask_language() {
@@ -258,8 +275,21 @@ ask_language() {
     echo -e "    ${CYAN}[MS]${NC} Bahasa Melayu"
     echo ""
 
+    # Disable exit-on-error for interactive loop
+    set +e
+
     while true; do
-        read -rp "  Enter choice [EN/MS]: " choice < /dev/tty
+        if [ -t 0 ]; then
+            read -rp "  Enter choice [EN/MS]: " choice
+        else
+            if [ -c /dev/tty ]; then
+                read -rp "  Enter choice [EN/MS]: " choice < /dev/tty
+            else
+                log_error "Cannot read input (no tty). Use --non-interactive or run script directly."
+                exit 1
+            fi
+        fi
+        
         choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
         case "$choice" in
             EN) LANGUAGE="EN"; break ;;
@@ -267,6 +297,9 @@ ask_language() {
             *) echo -e "  ${RED}Invalid choice. Please enter EN or MS.${NC}" ;;
         esac
     done
+    
+    # Re-enable exit-on-error
+    set -e
 }
 
 confirm_installation() {
@@ -279,9 +312,21 @@ confirm_installation() {
     echo -e "    Target(s): ${CYAN}${TARGET_TOOLS}${NC}"
     echo -e "    Language:  ${CYAN}${LANGUAGE}${NC}"
     echo -e "    Directory: ${CYAN}$(cd "$TARGET_DIR" && pwd)${NC}"
-    echo ""
-
-    read -rp "  Proceed with installation? [Y/n]: " confirm < /dev/tty
+    # Disable exit-on-error for interactive input
+    set +e
+    
+    if [ -t 0 ]; then
+        read -rp "  Proceed with installation? [Y/n]: " confirm
+    else
+        if [ -c /dev/tty ]; then
+            read -rp "  Proceed with installation? [Y/n]: " confirm < /dev/tty
+        else
+            confirm="Y" # Assume yes if no TTY in non-interactive mode? Or fail.
+        fi
+    fi
+    
+    set -e
+    
     confirm="${confirm:-Y}"
 
     if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
