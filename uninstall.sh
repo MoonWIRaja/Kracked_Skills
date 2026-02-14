@@ -92,6 +92,7 @@ confirm_uninstall() {
     # Disable exit-on-error for interactive input
     set +e
     
+    local confirm=""
     if [ -t 0 ]; then
         read -rp "  Proceed with uninstallation? [y/N]: " confirm
     else
@@ -105,6 +106,8 @@ confirm_uninstall() {
     
     set -e
     
+    confirm="${confirm:-N}"
+
     if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
         log_info "Uninstallation cancelled."
         exit 0
