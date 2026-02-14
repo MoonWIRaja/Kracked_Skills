@@ -378,13 +378,31 @@ download_file() {
 create_directories() {
     log_info "Creating KD directory structure..."
 
-    # Use space-separated string for Bash 3.2 compatibility
-    local dirs="${KD_DIR} ${KD_DIR}/prompts ${KD_DIR}/prompts/roles ${KD_DIR}/prompts/stages ${KD_DIR}/prompts/multi-agent ${KD_DIR}/templates ${KD_DIR}/checklists ${KD_DIR}/workflows ${KD_DIR}/config ${KD_DIR}/config/language ${KD_DIR}/KD_output ${KD_DIR}/KD_output/status ${KD_DIR}/KD_output/brainstorm ${KD_DIR}/KD_output/product-brief ${KD_DIR}/KD_output/PRD ${KD_DIR}/KD_output/architecture ${KD_DIR}/KD_output/epics-and-stories ${KD_DIR}/KD_output/code-review ${KD_DIR}/KD_output/deployment ${KD_DIR}/KD_output/release ${KD_DIR}/KD_output/decisions ${KD_DIR}/KD_output/risks"
-
-    for dir in $dirs; do
-        mkdir -p "${TARGET_DIR}/${dir}"
-        log_verbose "Created: ${dir}/"
-    done
+    # Create all directories explicitly to avoid loop/variable issues in Bash 3.2
+    mkdir -p "${TARGET_DIR}/${KD_DIR}"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/prompts"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/prompts/roles"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/prompts/stages"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/prompts/multi-agent"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/templates"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/checklists"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/workflows"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/config"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/config/language"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/status"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/brainstorm"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/product-brief"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/PRD"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/architecture"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/epics-and-stories"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/code-review"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/deployment"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/release"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/decisions"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/risks"
+    
+    log_verbose "Directories created."
 
     log_success "Directory structure created."
 }
