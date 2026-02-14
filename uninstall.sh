@@ -89,7 +89,22 @@ confirm_uninstall() {
     echo -e "    - The status.md backup"
     echo ""
 
-    read -rp "  Proceed with uninstallation? [y/N]: " confirm
+    # Disable exit-on-error for interactive input
+    set +e
+    
+    if [ -t 0 ]; then
+        read -rp "  Proceed with uninstallation? [y/N]: " confirm
+    else
+        if [ -c /dev/tty ]; then
+            read -rp "  Proceed with uninstallation? [y/N]: " confirm < /dev/tty
+        else
+            log_error "Cannot read input (no tty). Run script directly or use --non-interactive if available."
+            exit 1
+        fi
+    fi
+    
+    set -e
+    
     if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
         log_info "Uninstallation cancelled."
         exit 0
