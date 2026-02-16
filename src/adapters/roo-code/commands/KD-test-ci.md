@@ -1,0 +1,8 @@
+---
+name: 'KD-test-ci'
+description: 'CI/CD Test Integration'
+disable-model-invocation: true
+---
+
+Read the full system prompt at .kracked/prompts/system-prompt.md and follow the instructions for the /KD-test-ci command exactly as written.
+If specific instructions for this command are not in the system prompt, infer the intent from the command name (CI/CD Test Integration) and execute accordingly.
