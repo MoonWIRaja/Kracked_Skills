@@ -15,7 +15,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$KD_VERSION = "3.0.0"
+$KD_VERSION = "4.0.0"
 $KD_DIR = ".kracked"
 $KD_REPO = "MoonWIRaja/Kracked_skill"
 $KD_RAW_URL = "https://raw.githubusercontent.com/$KD_REPO/main"
@@ -265,11 +265,10 @@ Restore-Config -BackupDir $backupDir
 Write-Host ""
 Write-Ok "KD updated to v$latestVersion!"
 Write-Host ""
-Write-Host "  What's new in v3.0.0:" -ForegroundColor White
-Write-Host "    * Full rebranding to Kracked_Skills"
-Write-Host "    * Senior Full Stack Architect persona (Frontend + Backend)"
-Write-Host "    * New commands: /KD-kickoff, /KD-api-design, /KD-refactor, /KD-test"
-Write-Host "    * Advanced Ultrathink protocol for multi-dimensional analysis"
-Write-Host "    * Bulletproof Backend standards (OWASP compliance, Zod validation)"
-Write-Host "    * Enhanced interactive menu with 83+ commands"
+Write-Host "  What's new in v$KD_VERSION:" -ForegroundColor White
+Write-Host "    * Expanded Role Library (Data Scientist, Mobile Dev, DBA)"
+Write-Host "    * TestSprite Integration for Visual Regression Testing"
+Write-Host "    * New Adapter Support: Cline, Kilo Code, Roo Code"
+Write-Host "    * Smart Role Switching & Handoff Protocols"
+Write-Host "    * Tool Selector & Git Integration"
 Write-Host ""

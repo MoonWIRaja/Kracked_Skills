@@ -2,6 +2,8 @@
   <h1 align="center">Kracked_Skills (KD)</h1>
   <p align="center">
     <strong>Structured Multi-Role AI Product Execution System</strong>
+    <br>
+    <img src="https://img.shields.io/badge/version-4.0.0-blue.svg" alt="Version">
   </p>
   <p align="center">
     AI Skill by <a href="https://krackeddevs.com/">KRACKEDDEVS</a>
@@ -83,17 +85,17 @@ Discovery → Brainstorm → Requirements → Architecture → Implementation �
 ```
 Each stage has defined entry/exit criteria, checkpoints, and artifact outputs.
 
-### 🤖 Multi-Agent System
-- **Party Mode** — Spawn 2-5 **named agents** for parallel ideation with consensus scoring
-- **Agent Swarm** — Distribute tasks across 2-8 **named agents** for parallel execution
-- **Agent Personalities** — Each agent has a unique name, style, and perspective
-- **Confidence Scoring** — HIGH/MEDIUM/LOW scoring on all recommendations
-- **Conflict Resolution** — Systematic protocol for resolving agent disagreements
+## ✨ Features (v4.0.0)
 
-### 🌐 Web Research
-- Market data and competitor analysis during discovery
-- Framework comparisons and benchmarks during architecture
-- Frontend-backend integration verification
+- **Expanded Role Library**: 14 specialized roles including UX Designer, Data Scientist, Mobile Dev, and DBA.
+- **Smart Role Switcher**: Auto-detects the best role for your request regex triggers.
+- **Multi-Agent Collaboration**: Handoff protocols, conflict resolution & personality profiles.
+- **TestSprite Integration**: Automated visual regression testing (Puppeteer & Pixelmatch).
+- **Intelligent Tool Selector**: Context-aware tool recommendations.
+- **Git Integration**: Auto-commit scripts with conventional messages.
+- **Analytics**: Tracks agent performance and decision making.
+- **Unified Exports**: Export project status, Jira CSVs, and PDFs.
+- **Project Structure**: Standardized directory layout for scalability.
 - Security advisory checks on dependencies
 
 ### 🌍 Dual Language Support

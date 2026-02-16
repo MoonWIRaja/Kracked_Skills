@@ -1,0 +1,48 @@
+# Artifact Dependency Graph
+artifacts:
+  - id: "discovery-001"
+    type: "discovery_report"
+    path: "status/status.md"
+    created_at: "2026-02-01T10:00:00Z"
+    created_by: "ANALYST"
+    status: "approved"
+    version: "1.0"
+    dependencies: []
+    dependents:
+      - "brainstorm-001"
+      - "prd-001"
+    
+  - id: "brainstorm-001"
+    type: "brainstorm"
+    path: "brainstorm/brainstorm.md"
+    created_at: "2026-02-02T14:30:00Z"
+    created_by: "PM"
+    status: "approved"
+    version: "2.1"
+    dependencies:
+      - "discovery-001"
+    dependents:
+      - "prd-001"
+      - "product-brief-001"
+    changes:
+      - version: "1.0"
+        date: "2026-02-02T14:30:00Z"
+        change: "Initial brainstorm"
+      - version: "2.0"
+        date: "2026-02-03T09:15:00Z"
+        change: "Added payment feature ideas"
+      - version: "2.1"
+        date: "2026-02-03T11:45:00Z"
+        change: "Refined based on security review"
+
+# Dependency visualization
+dependency_graph: |
+  discovery-001
+    ├─> brainstorm-001
+    │     ├─> prd-001
+    │     └─> product-brief-001
+    └─> prd-001
+          └─> arch-001
+                ├─> epic-001
+                ├─> epic-002
+                └─> epic-003

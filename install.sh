@@ -13,7 +13,7 @@ trap 'echo "Error on line $LINENO"' ERR
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-readonly KD_VERSION="3.0.0"
+readonly KD_VERSION="4.0.0"
 readonly KD_REPO="MoonWIRaja/Kracked_skill"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
 readonly KD_DIR=".kracked"
@@ -84,7 +84,7 @@ Arguments:
   TARGET_DIR                  Target project directory (default: current directory)
 
 Options:
-  --target=<tools>            AI tools (comma-separated): claude-code, cursor, antigravity, all
+  --target=<tools>            AI tools (comma-separated): claude-code, cursor, antigravity, cline, kilocode, roo-code, all
   --language=<lang>           Language preference: EN, MS
   --non-interactive           Skip interactive prompts, use defaults
   --force                     Overwrite existing installation
@@ -93,7 +93,7 @@ Options:
 
 Examples:
   curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_skill/main/install.sh | bash
-  bash install.sh /path/to/project --target=claude-code,cursor --language=MS
+  bash install.sh /path/to/project --target=claude-code,cursor,cline --language=MS
   bash install.sh . --target=all --language=EN
   bash install.sh . --non-interactive --force
 
@@ -214,7 +214,9 @@ ask_target() {
     echo -e "  ${BOLD}Select target AI tool(s) — choose multiple with commas (e.g. 1,3):${NC}"
     echo -e "    ${CYAN}[1]${NC} Claude Code"
     echo -e "    ${CYAN}[2]${NC} Cursor"
-    echo -e "    ${CYAN}[3]${NC} Antigravity"
+    echo -e "    ${CYAN}[4]${NC} Cline"
+    echo -e "    ${CYAN}[5]${NC} Kilo Code"
+    echo -e "    ${CYAN}[6]${NC} Roo Code"
     echo -e "    ${YELLOW}[A]${NC} All of the above"
     echo ""
 
@@ -223,17 +225,17 @@ ask_target() {
     
     while true; do
         if [ -c /dev/tty ]; then
-            printf "  Enter choice(s) [1-3, A]: " > /dev/tty
+            printf "  Enter choice(s) [1-6, A]: " > /dev/tty
             read choice < /dev/tty
         else
-            printf "  Enter choice(s) [1-3, A]: "
+            printf "  Enter choice(s) [1-6, A]: "
             read choice
         fi
 
         choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
 
         if [[ "$choice" == "A" ]]; then
-            TARGET_TOOLS="claude-code,cursor,antigravity"
+            TARGET_TOOLS="claude-code,cursor,antigravity,cline,kilocode,roo-code"
             break
         fi
 
@@ -246,6 +248,9 @@ ask_target() {
                 1) selections="${selections:+$selections,}claude-code" ;;
                 2) selections="${selections:+$selections,}cursor" ;;
                 3) selections="${selections:+$selections,}antigravity" ;;
+                4) selections="${selections:+$selections,}cline" ;;
+                5) selections="${selections:+$selections,}kilocode" ;;
+                6) selections="${selections:+$selections,}roo-code" ;;
                 *) valid=false ;;
             esac
         done
@@ -389,6 +394,13 @@ create_directories() {
     mkdir -p "${TARGET_DIR}/${KD_DIR}/workflows"
     mkdir -p "${TARGET_DIR}/${KD_DIR}/config"
     mkdir -p "${TARGET_DIR}/${KD_DIR}/config/language"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/config/agents"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/testsprite"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/tool-selector"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/git-integration"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/analytics"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/exporters"
+    mkdir -p "${TARGET_DIR}/${KD_DIR}/artifacts"
     mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output"
     mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/status"
     mkdir -p "${TARGET_DIR}/${KD_DIR}/KD_output/brainstorm"
@@ -420,9 +432,15 @@ download_files() {
     # ---- System Prompt ----
     download_and_track "${base}/prompts/system-prompt.md" \
         "${KD_DIR}/prompts/system-prompt.md" "System Prompt"
+    download_and_track "${base}/prompts/role-switcher.md" \
+        "${KD_DIR}/prompts/role-switcher.md" "Role Switcher"
+    download_and_track "${base}/prompts/handoff-protocol.md" \
+        "${KD_DIR}/prompts/handoff-protocol.md" "Handoff Protocol"
+    download_and_track "${base}/prompts/conflict-resolution.md" \
+        "${KD_DIR}/prompts/conflict-resolution.md" "Conflict Resolution"
 
     # ---- Roles ----
-    local roles="_role-template analyst product-manager architect tech-lead engineer qa security devops release-manager"
+    local roles="_role-template analyst product-manager architect tech-lead engineer qa security devops release-manager ux-designer data-scientist mobile-developer database-admin"
     for role in $roles; do
         download_and_track "${base}/prompts/roles/${role}.md" \
             "${KD_DIR}/prompts/roles/${role}.md" "Role: ${role}"
@@ -472,6 +490,52 @@ download_files() {
         "${KD_DIR}/config/language/en.json" "Language: EN"
     download_and_track "${base}/config/language/ms.json" \
         "${KD_DIR}/config/language/ms.json" "Language: MS"
+    download_and_track "${base}/config/agents/personalities.json" \
+        "${KD_DIR}/config/agents/personalities.json" "Config: Personalities"
+
+    # ---- TestSprite ----
+    download_and_track "${base}/testsprite/testsprite-core.js" \
+        "${KD_DIR}/testsprite/testsprite-core.js" "TestSprite: Core"
+    download_and_track "${base}/commands/testsprite.js" \
+        "${KD_DIR}/testsprite/cli.js" "TestSprite: CLI" # Saved as cli.js for clarity? Or keep orig structure?
+    # Wait, the CLI command is in src/commands/testsprite.js, but I don't see a commands dir in .kracked.
+    # The adapter setup puts commands in .claude/commands.
+    # TestSprite is a script, not necessarily an adapter command. 
+    # But I should probably put it in testsprite/ or keep it in commands/.
+    # The install script didn't have a commands directory created in .kracked.
+    # I'll put it in testsprite/cli.js for now or create a commands dir.
+    # Let's simple Copy it to testsprite/cli.js or better yet, creates a commands dir.
+    # I'll put it in testsprite/run.js
+    download_and_track "${base}/commands/testsprite.js" \
+        "${KD_DIR}/testsprite/run.js" "TestSprite: CLI"
+
+    # ---- Tool Selector ----
+    download_and_track "${base}/tool-selector/tool-selector.js" \
+        "${KD_DIR}/tool-selector/tool-selector.js" "Tool Selector: Logic"
+    download_and_track "${base}/tool-selector/knowledge-base.json" \
+        "${KD_DIR}/tool-selector/knowledge-base.json" "Tool Selector: KB"
+
+    # ---- Git Integration ----
+    download_and_track "${base}/git-integration/auto-commit.sh" \
+        "${KD_DIR}/git-integration/auto-commit.sh" "Git: Auto-commit"
+    download_and_track "${base}/git-integration/config.yaml" \
+        "${KD_DIR}/git-integration/config.yaml" "Git: Config"
+
+    # ---- Analytics ----
+    download_and_track "${base}/analytics/agent-performance.json" \
+        "${KD_DIR}/analytics/agent-performance.json" "Analytics: Perf"
+
+    # ---- Exporters ----
+    download_and_track "${base}/exporters/export-consolidated.sh" \
+        "${KD_DIR}/exporters/export-consolidated.sh" "Export: Consolidated"
+    download_and_track "${base}/exporters/export-jira.js" \
+        "${KD_DIR}/exporters/export-jira.js" "Export: Jira"
+    download_and_track "${base}/exporters/export-pdf.sh" \
+        "${KD_DIR}/exporters/export-pdf.sh" "Export: PDF"
+
+    # ---- Artifacts ----
+    download_and_track "${base}/artifacts/manifest.yaml" \
+        "${KD_DIR}/artifacts/manifest.yaml" "Artifacts: Manifest"
 
     log_success "KD files downloaded."
 }
@@ -655,6 +719,7 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest
         KD-scale-review KD-sprint-planning KD-sprint-status KD-status KD-swarm KD-tech-research KD-test-arch
         KD-test-atdd KD-test-automate KD-test-ci KD-test-design KD-test-frame KD-test-nfr KD-test-teach
         KD-test-trace KD-ux-design KD-validate KD-validate-agent KD-validate-workflow KD-kickoff KD-refactor KD-test KD-api-design
+        KD-role-data-scientist KD-role-mobile-dev KD-role-dba KD-test-sprite KD-tool-selector
     )
     for cmd in "${cmd_names[@]}"; do
         download_file "${KD_RAW_URL}/src/adapters/claude-code/commands/${cmd}.md" \
@@ -696,6 +761,7 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest
         KD-scale-review KD-sprint-planning KD-sprint-status KD-status KD-swarm KD-tech-research KD-test-arch
         KD-test-atdd KD-test-automate KD-test-ci KD-test-design KD-test-frame KD-test-nfr KD-test-teach
         KD-test-trace KD-ux-design KD-validate KD-validate-agent KD-validate-workflow KD-kickoff KD-refactor KD-test KD-api-design
+        KD-role-data-scientist KD-role-mobile-dev KD-role-dba KD-test-sprite KD-tool-selector
     )
     for cmd in "${cmd_names[@]}"; do
         download_file "${KD_RAW_URL}/src/adapters/cursor/commands/${cmd}.md" \
@@ -742,6 +808,7 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest
         KD-scale-review KD-sprint-planning KD-sprint-status KD-status KD-swarm KD-tech-research KD-test-arch
         KD-test-atdd KD-test-automate KD-test-ci KD-test-design KD-test-frame KD-test-nfr KD-test-teach
         KD-test-trace KD-ux-design KD-validate KD-validate-agent KD-validate-workflow KD-kickoff KD-refactor KD-test KD-api-design
+        KD-role-data-scientist KD-role-mobile-dev KD-role-dba KD-test-sprite KD-tool-selector
     )
     for cmd in "${cmd_names[@]}"; do
         download_file "${KD_RAW_URL}/src/adapters/antigravity/workflows/${cmd}.md" \
@@ -750,6 +817,57 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest
     log_verbose "Deployed ${#cmd_names[@]} slash commands to .agent/workflows/"
 
     log_success "Antigravity setup complete."
+}
+
+setup_cline() {
+    log_info "Setting up for Cline..."
+
+    local url="${KD_RAW_URL}/src/adapters/cline/.clinerules"
+    local dest="${TARGET_DIR}/.clinerules"
+    if download_file "$url" "$dest"; then
+        log_verbose "Downloaded .clinerules from repo"
+    else
+        log_warn "Could not download .clinerules, creating local copy..."
+        echo '# KD - AI Skill by KRACKEDDEVS
+Read .kracked/prompts/system-prompt.md for full instructions.
+Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest"
+    fi
+
+    log_success "Cline setup complete."
+}
+
+setup_kilocode() {
+    log_info "Setting up for Kilo Code..."
+
+    local url="${KD_RAW_URL}/src/adapters/kilocode/.kilocode"
+    local dest="${TARGET_DIR}/.kilocode"
+    if download_file "$url" "$dest"; then
+        log_verbose "Downloaded .kilocode from repo"
+    else
+        log_warn "Could not download .kilocode, creating local copy..."
+        echo '# KD - AI Skill by KRACKEDDEVS
+Read .kracked/prompts/system-prompt.md for full instructions.
+Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest"
+    fi
+
+    log_success "Kilo Code setup complete."
+}
+
+setup_roo_code() {
+    log_info "Setting up for Roo Code..."
+
+    local url="${KD_RAW_URL}/src/adapters/roo-code/.roo"
+    local dest="${TARGET_DIR}/.roo"
+    if download_file "$url" "$dest"; then
+        log_verbose "Downloaded .roo from repo"
+    else
+        log_warn "Could not download .roo, creating local copy..."
+        echo '# KD - AI Skill by KRACKEDDEVS
+Read .kracked/prompts/system-prompt.md for full instructions.
+Type /KD for command menu. Status: .kracked/KD_output/status/status.md' > "$dest"
+    fi
+
+    log_success "Roo Code setup complete."
 }
 
 # ---------------------------------------------------------------------------
@@ -855,11 +973,14 @@ main() {
 
     # Setup adapters (multiple)
     IFS=',' read -ra targets <<< "$TARGET_TOOLS"
-    for t in "${targets[@]}"; do
-        case "$t" in
-            claude-code)  setup_claude_code ;;
-            cursor)       setup_cursor ;;
-            antigravity)  setup_antigravity ;;
+    for tool in $(echo "$TARGET_TOOLS" | tr ',' ' '); do
+        case "$tool" in
+            claude-code) setup_claude_code ;;
+            cursor)      setup_cursor ;;
+            antigravity) setup_antigravity ;;
+            cline)       setup_cline ;;
+            kilocode)    setup_kilocode ;;
+            roo-code)    setup_roo_code ;;
         esac
     done
 

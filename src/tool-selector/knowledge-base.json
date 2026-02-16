@@ -1,0 +1,129 @@
+{
+    "frameworks": {
+        "frontend": {
+            "React": {
+                "learningCurve": 6,
+                "ecosystem": 10,
+                "performance": 8,
+                "scalability": 9,
+                "community": 10
+            },
+            "Vue": {
+                "learningCurve": 8,
+                "ecosystem": 8,
+                "performance": 8,
+                "scalability": 8,
+                "community": 9
+            },
+            "Angular": {
+                "learningCurve": 4,
+                "ecosystem": 9,
+                "performance": 7,
+                "scalability": 10,
+                "community": 8
+            },
+            "Svelte": {
+                "learningCurve": 9,
+                "ecosystem": 6,
+                "performance": 10,
+                "scalability": 7,
+                "community": 7
+            },
+            "Next.js": {
+                "learningCurve": 7,
+                "ecosystem": 9,
+                "performance": 9,
+                "scalability": 9,
+                "community": 9
+            },
+            "Nuxt": {
+                "learningCurve": 7,
+                "ecosystem": 7,
+                "performance": 9,
+                "scalability": 8,
+                "community": 8
+            }
+        },
+        "backend": {
+            "Express": {
+                "performance": 7,
+                "scalability": 8,
+                "ecosystem": 10,
+                "learningCurve": 9,
+                "community": 10
+            },
+            "NestJS": {
+                "performance": 8,
+                "scalability": 9,
+                "ecosystem": 8,
+                "learningCurve": 6,
+                "community": 7
+            },
+            "FastAPI": {
+                "performance": 9,
+                "scalability": 8,
+                "ecosystem": 8,
+                "learningCurve": 8,
+                "community": 9
+            },
+            "Django": {
+                "performance": 6,
+                "scalability": 9,
+                "ecosystem": 10,
+                "learningCurve": 7,
+                "community": 10
+            },
+            "Spring Boot": {
+                "performance": 9,
+                "scalability": 10,
+                "ecosystem": 10,
+                "learningCurve": 4,
+                "community": 9
+            },
+            "Gin": {
+                "performance": 10,
+                "scalability": 9,
+                "ecosystem": 7,
+                "learningCurve": 6,
+                "community": 8
+            },
+            "Laravel": {
+                "performance": 7,
+                "scalability": 8,
+                "ecosystem": 10,
+                "learningCurve": 8,
+                "community": 10
+            }
+        }
+    },
+    "databases": {
+        "PostgreSQL": {
+            "baseScore": 9,
+            "strengths": ["ACID", "JSONB", "Extensions", "Reliability"]
+        },
+        "MySQL": {
+            "baseScore": 8,
+            "strengths": ["Proven", "Hosting support", "Read heavy"]
+        },
+        "MongoDB": {
+            "baseScore": 8,
+            "strengths": ["Flexible schema", "Horizontal scaling", "Rapid dev"]
+        },
+        "Redis": {
+            "baseScore": 10,
+            "strengths": ["Caching", "Speed", "Pub/Sub"]
+        },
+        "Cassandra": {
+            "baseScore": 7,
+            "strengths": ["Write heavy", "Linear scalability", "High availability"]
+        },
+        "DynamoDB": {
+            "baseScore": 8,
+            "strengths": ["Serverless", "AWS integration", "Auto-scaling"]
+        },
+        "Neo4j": {
+            "baseScore": 7,
+            "strengths": ["Graph data", "Relationships", "Visualization"]
+        }
+    }
+}

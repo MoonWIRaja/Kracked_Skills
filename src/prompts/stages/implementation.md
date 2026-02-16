@@ -1,68 +1,51 @@
-# Stage 4: Implementation
+## Implementation Stage (Updated with TestSprite)
 
-## Metadata
-- **Stage Name:** Implementation
-- **Stage Number:** 4
-- **Primary Roles:** Tech Lead [TL] → Engineer [ENG]
-- **Commands:** `/KD-epics-and-stories`, `/KD-dev-story [id]`
+### Auto-Trigger TestSprite
 
-## Description
-The Implementation stage has two phases. First, the Tech Lead creates the backlog (epics and stories). Then, the Engineer implements each story. This is typically the longest stage.
+After code implementation, automatically trigger TestSprite:
 
-## Entry Criteria
-- Architecture document approved ⏸️
-- Tech stack finalized
-- Data models defined
+```bash
+# Developer completes frontend implementation
+/KD-dev-story --story=story-1-1
 
-## Activities
+# KD detects completion
+[ENG] Story implementation complete.
 
-### Phase 1: Planning (Tech Lead)
-**Command:** `/KD-epics-and-stories`
-- Break architecture into epics (major feature areas)
-- Create user stories per epic
-- Each story follows `story-card.md` template
-- Define implementation order
-- Identify dependencies between stories
-- Flag stories for Agent Swarm consideration
+# Auto-trigger TestSprite
+[TESTSPRITE] 🧪 Starting automated testing...
 
-### Phase 2: Execution (Engineer)
-**Command:** `/KD-dev-story [story-id]`
-- Implement stories one by one (or via swarm)
-- For each story:
-  1. Read story card and acceptance criteria
-  2. Implement solution
-  3. Write tests
-  4. Self-review
-  5. Mark complete
-  6. Update `status.md`
+# Run tests
+1. Visual Regression ✅
+2. Functional Tests ✅
+3. Performance Tests ⚠️  2 issues found
+4. Accessibility Tests ⚠️  5 issues found
 
-### Focus Modes
-- `--focus=backend` — API/server implementation only
-- `--focus=frontend` — UI/client implementation only
-- `--focus=full` — Full-stack (default)
+# Generate reports
+📊 Report generated: .kracked/testsprite/reports/latest.html
 
-### Scale Adjustments
-- **SMALL:** Combine planning + execution, informal stories
-- **STANDARD:** Full story cards, ordered execution
-- **DEEP:** Detailed cards, formal code reviews per story
+[TESTSPRITE] Found 7 issues (0 critical, 2 high, 5 medium)
 
-## Exit Criteria
-- All stories implemented
-- All tests passing
-- Story cards updated with completion status
-- `status.md` updated with progress
+# Auto-analyze and suggest fixes
+[QA] Reviewing TestSprite report...
 
-## Artifacts Produced
-- Story card files (per story)
-- Implementation code
-- Test files
-- Updated `status.md`
+Critical Issues:
+  None ✅
 
-## Checkpoint Required
-- No formal checkpoint (quality checks in next stage)
+High Priority Issues:
+  1. Slow page load (4.2s > 3s threshold)
+     Suggestion: Code splitting recommended
+     
+  2. Missing alt text on 3 images
+     Suggestion: Add descriptive alt text
 
-## Next Stage
-- **Stage 5: Quality** (`/KD-code-review`)
+[ARCHITECT] Performance improvement plan:
+  - Implement React.lazy() for route-based code splitting
+  - Optimize images (use WebP format)
+  - Enable gzip compression
 
----
-*KD finishes what it starts. | KRACKEDDEVS | https://krackeddevs.com/*
+[ENG] Fix plan generated:
+  Story: Fix-001 - Performance optimization
+  Story: Fix-002 - Accessibility improvements
+
+Auto-create fix stories? (Y/n)
+```

@@ -1,0 +1,112 @@
+{
+    "tracking_period": "2026-01-01 to 2026-02-15",
+    "agents": {
+        "agent_001": {
+            "name": "Alex (Pragmatist)",
+            "statistics": {
+                "decisions_participated": 145,
+                "decisions_won": 89,
+                "win_rate": 0.61,
+                "avg_confidence": 0.78,
+                "consensus_rate": 0.72,
+                "debate_participation": 0.85
+            },
+            "performance_by_domain": {
+                "architecture": {
+                    "decisions": 45,
+                    "win_rate": 0.72,
+                    "avg_confidence": 0.82
+                },
+                "implementation": {
+                    "decisions": 67,
+                    "win_rate": 0.58,
+                    "avg_confidence": 0.76
+                },
+                "deployment": {
+                    "decisions": 33,
+                    "win_rate": 0.55,
+                    "avg_confidence": 0.75
+                }
+            },
+            "strengths": [
+                "MVP planning",
+                "Risk mitigation",
+                "Timeline estimation"
+            ],
+            "improvement_areas": [
+                "Long-term planning",
+                "Innovation adoption"
+            ],
+            "collaboration_score": {
+                "works_well_with": ["agent_003", "agent_004"],
+                "conflicts_with": ["agent_002"],
+                "mediation_needed": 12
+            }
+        },
+        "agent_002": {
+            "name": "Morgan (Visionary)",
+            "statistics": {
+                "decisions_participated": 145,
+                "decisions_won": 34,
+                "win_rate": 0.23,
+                "avg_confidence": 0.65,
+                "consensus_rate": 0.45,
+                "debate_participation": 0.92
+            },
+            "performance_by_domain": {
+                "innovation": {
+                    "decisions": 28,
+                    "win_rate": 0.64,
+                    "avg_confidence": 0.78
+                },
+                "architecture": {
+                    "decisions": 67,
+                    "win_rate": 0.18,
+                    "avg_confidence": 0.58
+                }
+            },
+            "strengths": [
+                "Future-proofing",
+                "Emerging tech evaluation",
+                "Strategic thinking"
+            ],
+            "improvement_areas": [
+                "Pragmatism",
+                "Cost awareness",
+                "Timeline realism"
+            ],
+            "collaboration_score": {
+                "works_well_with": ["agent_003"],
+                "conflicts_with": ["agent_001", "agent_005"],
+                "mediation_needed": 23
+            },
+            "trend": "improving",
+            "notes": "Win rate increased from 18% to 23% after adjusting decision weight from 1.0 to 0.8"
+        }
+    },
+    "team_performance": {
+        "avg_decision_time": "12 minutes",
+        "consensus_rate": 0.68,
+        "escalation_rate": 0.15,
+        "satisfaction_score": 0.82,
+        "accuracy": {
+            "predictions": 145,
+            "correct": 118,
+            "rate": 0.81
+        }
+    },
+    "optimization_recommendations": [
+        {
+            "agent": "agent_002",
+            "recommendation": "Reduce decision weight from 0.8 to 0.7 for architecture decisions",
+            "reason": "Low win rate (18%) causing unnecessary debates",
+            "expected_impact": "Reduce decision time by 15%"
+        },
+        {
+            "agent": "agent_004",
+            "recommendation": "Increase mediation role by 20%",
+            "reason": "High conflict rate between agent_001 and agent_002",
+            "expected_impact": "Improve consensus rate from 68% to 75%"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+# Kracked_Skills (KD)
+# AI Skill by KRACKEDDEVS
+
+# System Prompt
+Read `.kracked/prompts/system-prompt.md` to understand your role and capabilities.
+
+# Status
+Always check `.kracked/KD_output/status/status.md` for the current project context.
+
+# Commands
+You can trigger KD workflows using slash commands if configured, or by typing:
+"/KD" - List available commands and features.

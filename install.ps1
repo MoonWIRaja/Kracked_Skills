@@ -28,7 +28,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Constants
-$KD_VERSION = "3.0.0"
+$KD_VERSION = "4.0.0"
 $KD_REPO = "MoonWIRaja/Kracked_skill"
 $KD_RAW_URL = "https://raw.githubusercontent.com/$KD_REPO/main"
 $KD_DIR = ".kracked"
@@ -68,7 +68,7 @@ if ($Help) {
     Write-Host ''
     Write-Host 'Options:'
     Write-Host '  -TargetDir [path]        Target project directory (default: .)'
-    Write-Host '  -Target [tools]          AI tools (comma-separated): claude-code, cursor, antigravity, all'
+    Write-Host '  -Target [tools]          AI tools (comma-separated): claude-code, cursor, antigravity, cline, kilocode, roo-code, all'
     Write-Host '  -Language [lang]         Language: EN, MS'
     Write-Host '  -NonInteractive          Skip prompts, use defaults'
     Write-Host '  -Force                   Overwrite existing installation'
@@ -90,7 +90,7 @@ if ($Help) {
 # ---------------------------------------------------------------------------
 function Ask-Target {
     if ($Target) {
-        if ($Target -eq 'all') { return @('claude-code', 'cursor', 'antigravity') }
+        if ($Target -eq 'all') { return @('claude-code', 'cursor', 'antigravity', 'cline', 'kilocode', 'roo-code') }
         return ($Target -split ',').Trim()
     }
     if ($NonInteractive) { return @('claude-code') }
@@ -99,15 +99,17 @@ function Ask-Target {
     Write-Host '  Select target AI tool(s) - choose multiple with commas (e.g. 1,3):' -ForegroundColor White
     Write-Host "    [1] Claude Code" -ForegroundColor Cyan
     Write-Host "    [2] Cursor" -ForegroundColor Cyan
-    Write-Host "    [3] Antigravity" -ForegroundColor Cyan
+    Write-Host "    [4] Cline" -ForegroundColor Cyan
+    Write-Host "    [5] Kilo Code" -ForegroundColor Cyan
+    Write-Host "    [6] Roo Code" -ForegroundColor Cyan
     Write-Host "    [A] All of the above" -ForegroundColor Yellow
     Write-Host ""
 
     while ($true) {
-        $choice = (Read-Host '  Enter choice(s) [1-3, A]').Trim()
+        $choice = (Read-Host '  Enter choice(s) [1-6, A]').Trim()
 
         if ($choice -match '^[Aa]$') {
-            return @('claude-code', 'cursor', 'antigravity')
+            return @('claude-code', 'cursor', 'antigravity', 'cline', 'kilocode', 'roo-code')
         }
 
         $selections = @()
@@ -117,6 +119,9 @@ function Ask-Target {
                 "1" { $selections += 'claude-code' }
                 "2" { $selections += 'cursor' }
                 "3" { $selections += 'antigravity' }
+                "4" { $selections += 'cline' }
+                "5" { $selections += 'kilocode' }
+                "6" { $selections += 'roo-code' }
                 default { $valid = $false }
             }
         }
@@ -218,6 +223,13 @@ function New-KDDirs {
         "$KD_DIR\workflows"
         "$KD_DIR\config"
         "$KD_DIR\config\language"
+        "$KD_DIR\config\agents"
+        "$KD_DIR\testsprite"
+        "$KD_DIR\tool-selector"
+        "$KD_DIR\git-integration"
+        "$KD_DIR\analytics"
+        "$KD_DIR\exporters"
+        "$KD_DIR\artifacts"
         "$KD_DIR\KD_output"
         "$KD_DIR\KD_output\status"
         "$KD_DIR\KD_output\brainstorm"
@@ -252,9 +264,12 @@ function Get-KDFiles {
 
     # System Prompt
     Get-AndTrack "$base/prompts/system-prompt.md" "$KD_DIR\prompts\system-prompt.md" "System Prompt"
+    Get-AndTrack "$base/prompts/role-switcher.md" "$KD_DIR\prompts\role-switcher.md" "Role Switcher"
+    Get-AndTrack "$base/prompts/handoff-protocol.md" "$KD_DIR\prompts\handoff-protocol.md" "Handoff Protocol"
+    Get-AndTrack "$base/prompts/conflict-resolution.md" "$KD_DIR\prompts\conflict-resolution.md" "Conflict Resolution"
 
     # Roles
-    foreach ($r in @('_role-template','analyst','product-manager','architect','tech-lead','engineer','qa','security','devops','release-manager')) {
+    foreach ($r in @('_role-template','analyst','product-manager','architect','tech-lead','engineer','qa','security','devops','release-manager','ux-designer','data-scientist','mobile-developer','database-admin')) {
         Get-AndTrack "$base/prompts/roles/$r.md" "$KD_DIR\prompts\roles\$r.md" "Role: $r"
     }
 
@@ -288,6 +303,30 @@ function Get-KDFiles {
     Get-AndTrack "$base/config/defaults.json" "$KD_DIR\config\defaults.json" "Config: defaults"
     Get-AndTrack "$base/config/language/en.json" "$KD_DIR\config\language\en.json" "Language: EN"
     Get-AndTrack "$base/config/language/ms.json" "$KD_DIR\config\language\ms.json" "Language: MS"
+    Get-AndTrack "$base/config/agents/personalities.json" "$KD_DIR\config\agents\personalities.json" "Config: Personalities"
+
+    # TestSprite
+    Get-AndTrack "$base/testsprite/testsprite-core.js" "$KD_DIR\testsprite\testsprite-core.js" "TestSprite: Core"
+    Get-AndTrack "$base/commands/testsprite.js" "$KD_DIR\testsprite\run.js" "TestSprite: CLI"
+
+    # Tool Selector
+    Get-AndTrack "$base/tool-selector/tool-selector.js" "$KD_DIR\tool-selector\tool-selector.js" "Tool Selector: Logic"
+    Get-AndTrack "$base/tool-selector/knowledge-base.json" "$KD_DIR\tool-selector\knowledge-base.json" "Tool Selector: KB"
+
+    # Git Integration
+    Get-AndTrack "$base/git-integration/auto-commit.sh" "$KD_DIR\git-integration\auto-commit.sh" "Git: Auto-commit"
+    Get-AndTrack "$base/git-integration/config.yaml" "$KD_DIR\git-integration\config.yaml" "Git: Config"
+
+    # Analytics
+    Get-AndTrack "$base/analytics/agent-performance.json" "$KD_DIR\analytics\agent-performance.json" "Analytics: Perf"
+
+    # Exporters
+    Get-AndTrack "$base/exporters/export-consolidated.sh" "$KD_DIR\exporters\export-consolidated.sh" "Export: Consolidated"
+    Get-AndTrack "$base/exporters/export-jira.js" "$KD_DIR\exporters\export-jira.js" "Export: Jira"
+    Get-AndTrack "$base/exporters/export-pdf.sh" "$KD_DIR\exporters\export-pdf.sh" "Export: PDF"
+
+    # Artifacts
+    Get-AndTrack "$base/artifacts/manifest.yaml" "$KD_DIR\artifacts\manifest.yaml" "Artifacts: Manifest"
 
     Write-Ok "KD files downloaded."
 }
@@ -464,7 +503,8 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
         'KD-role-pm','KD-role-qa','KD-role-scrum-master','KD-role-solo-dev','KD-role-tech-writer','KD-role-ux',
         'KD-scale-review','KD-sprint-planning','KD-sprint-status','KD-status','KD-swarm','KD-tech-research','KD-test-arch',
         'KD-test-atdd','KD-test-automate','KD-test-ci','KD-test-design','KD-test-frame','KD-test-nfr','KD-test-teach',
-        'KD-test-trace','KD-ux-design','KD-validate','KD-validate-agent','KD-validate-workflow','KD-kickoff','KD-refactor','KD-test','KD-api-design'
+        'KD-test-trace','KD-ux-design','KD-validate','KD-validate-agent','KD-validate-workflow','KD-kickoff','KD-refactor','KD-test','KD-api-design',
+        'KD-role-data-scientist','KD-role-mobile-dev','KD-role-dba','KD-test-sprite','KD-tool-selector'
     )
     foreach ($cmd in $cmdNames) {
         $cmdUrl = "$KD_RAW_URL/src/adapters/claude-code/commands/$cmd.md"
@@ -508,7 +548,8 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
         'KD-role-pm','KD-role-qa','KD-role-scrum-master','KD-role-solo-dev','KD-role-tech-writer','KD-role-ux',
         'KD-scale-review','KD-sprint-planning','KD-sprint-status','KD-status','KD-swarm','KD-tech-research','KD-test-arch',
         'KD-test-atdd','KD-test-automate','KD-test-ci','KD-test-design','KD-test-frame','KD-test-nfr','KD-test-teach',
-        'KD-test-trace','KD-ux-design','KD-validate','KD-validate-agent','KD-validate-workflow','KD-kickoff','KD-refactor','KD-test','KD-api-design'
+        'KD-test-trace','KD-ux-design','KD-validate','KD-validate-agent','KD-validate-workflow','KD-kickoff','KD-refactor','KD-test','KD-api-design',
+        'KD-role-data-scientist','KD-role-mobile-dev','KD-role-dba','KD-test-sprite','KD-tool-selector'
     )
     foreach ($cmd in $cmdNames) {
         $cmdUrl = "$KD_RAW_URL/src/adapters/cursor/commands/$cmd.md"
@@ -560,7 +601,8 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
         'KD-role-pm','KD-role-qa','KD-role-scrum-master','KD-role-solo-dev','KD-role-tech-writer','KD-role-ux',
         'KD-scale-review','KD-sprint-planning','KD-sprint-status','KD-status','KD-swarm','KD-tech-research','KD-test-arch',
         'KD-test-atdd','KD-test-automate','KD-test-ci','KD-test-design','KD-test-frame','KD-test-nfr','KD-test-teach',
-        'KD-test-trace','KD-ux-design','KD-validate','KD-validate-agent','KD-validate-workflow','KD-kickoff','KD-refactor','KD-test','KD-api-design'
+        'KD-test-trace','KD-ux-design','KD-validate','KD-validate-agent','KD-validate-workflow','KD-kickoff','KD-refactor','KD-test','KD-api-design',
+        'KD-role-data-scientist','KD-role-mobile-dev','KD-role-dba','KD-test-sprite','KD-tool-selector'
     )
     foreach ($cmd in $cmdNames) {
         $cmdUrl = "$KD_RAW_URL/src/adapters/antigravity/workflows/$cmd.md"
@@ -570,6 +612,63 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
     Write-Verbose "  Deployed $($cmdNames.Count) slash commands to .agent/workflows/"
 
     Write-Ok "Antigravity setup complete."
+}
+
+# ---------------------------------------------------------------------------
+# Adapter: Cline
+# ---------------------------------------------------------------------------
+function Setup-Cline {
+    Write-Info "Setting up for Cline..."
+
+    $url = "$KD_RAW_URL/src/adapters/cline/.clinerules"
+    $dest = Join-Path $TargetDir '.clinerules'
+    if (-not (Get-RemoteFile -Url $url -Dest $dest)) {
+        Write-Warn "Could not download .clinerules, creating local copy..."
+        $content = '# KD - AI Skill by KRACKEDDEVS
+Read .kracked/prompts/system-prompt.md for full instructions.
+Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
+        [System.IO.File]::WriteAllText($dest, $content, [System.Text.Encoding]::UTF8)
+    }
+
+    Write-Ok "Cline setup complete."
+}
+
+# ---------------------------------------------------------------------------
+# Adapter: Kilo Code
+# ---------------------------------------------------------------------------
+function Setup-KiloCode {
+    Write-Info "Setting up for Kilo Code..."
+
+    $url = "$KD_RAW_URL/src/adapters/kilocode/.kilocode"
+    $dest = Join-Path $TargetDir '.kilocode'
+    if (-not (Get-RemoteFile -Url $url -Dest $dest)) {
+        Write-Warn "Could not download .kilocode, creating local copy..."
+        $content = '# KD - AI Skill by KRACKEDDEVS
+Read .kracked/prompts/system-prompt.md for full instructions.
+Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
+        [System.IO.File]::WriteAllText($dest, $content, [System.Text.Encoding]::UTF8)
+    }
+
+    Write-Ok "Kilo Code setup complete."
+}
+
+# ---------------------------------------------------------------------------
+# Adapter: Roo Code
+# ---------------------------------------------------------------------------
+function Setup-RooCode {
+    Write-Info "Setting up for Roo Code..."
+
+    $url = "$KD_RAW_URL/src/adapters/roo-code/.roo"
+    $dest = Join-Path $TargetDir '.roo'
+    if (-not (Get-RemoteFile -Url $url -Dest $dest)) {
+        Write-Warn "Could not download .roo, creating local copy..."
+        $content = '# KD - AI Skill by KRACKEDDEVS
+Read .kracked/prompts/system-prompt.md for full instructions.
+Type /KD for command menu. Status: .kracked/KD_output/status/status.md'
+        [System.IO.File]::WriteAllText($dest, $content, [System.Text.Encoding]::UTF8)
+    }
+
+    Write-Ok "Roo Code setup complete."
 }
 
 # ---------------------------------------------------------------------------
@@ -664,6 +763,9 @@ function Main {
             'claude-code'  { Setup-ClaudeCode }
             'cursor'       { Setup-Cursor }
             'antigravity'  { Setup-Antigravity }
+            'cline'        { Setup-Cline }
+            'kilocode'     { Setup-KiloCode }
+            'roo-code'     { Setup-RooCode }
         }
     }
 

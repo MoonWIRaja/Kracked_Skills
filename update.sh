@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-readonly KD_VERSION="3.0.0"
+readonly KD_VERSION="4.0.0"
 readonly KD_DIR=".kracked"
 readonly KD_REPO="MoonWIRaja/Kracked_skill"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
@@ -276,13 +276,12 @@ main() {
     echo ""
     log_success "KD updated to v${latest_version}!"
     echo ""
-    echo -e "  ${BOLD}What's new in v3.0.0:${NC}"
-    echo -e "    • Full rebranding to Kracked_Skills"
-    echo -e "    • Senior Full Stack Architect persona (Frontend + Backend)"
-    echo -e "    • New commands: /KD-kickoff, /KD-api-design, /KD-refactor, /KD-test"
-    echo -e "    • Advanced Ultrathink protocol for multi-dimensional analysis"
-    echo -e "    • Bulletproof Backend standards (OWASP compliance, Zod validation)"
-    echo -e "    • Enhanced interactive menu with 83+ commands"
+    echo -e "  ${BOLD}What's new in v${KD_VERSION}:${NC}"
+    echo -e "    • Expanded Role Library (Data Scientist, Mobile Dev, DBA)"
+    echo -e "    • TestSprite Integration for Visual Regression Testing"
+    echo -e "    • New Adapter Support: Cline, Kilo Code, Roo Code"
+    echo -e "    • Smart Role Switching & Handoff Protocols"
+    echo -e "    • Tool Selector & Git Integration"
     echo ""
 }
 
