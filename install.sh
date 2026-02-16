@@ -14,7 +14,7 @@ trap 'echo "Error on line $LINENO"' ERR
 # Constants
 # ---------------------------------------------------------------------------
 readonly KD_VERSION="4.0.0"
-readonly KD_REPO="MoonWIRaja/Kracked_skill"
+readonly KD_REPO="MoonWIRaja/Kracked_Skills"
 readonly KD_RAW_URL="https://raw.githubusercontent.com/${KD_REPO}/main"
 readonly KD_DIR=".kracked"
 readonly KD_SITE="https://krackeddevs.com/"
