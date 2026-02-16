@@ -99,6 +99,7 @@ function Ask-Target {
     Write-Host '  Select target AI tool(s) - choose multiple with commas (e.g. 1,3):' -ForegroundColor White
     Write-Host "    [1] Claude Code" -ForegroundColor Cyan
     Write-Host "    [2] Cursor" -ForegroundColor Cyan
+    Write-Host "    [3] Antigravity" -ForegroundColor Cyan
     Write-Host "    [4] Cline" -ForegroundColor Cyan
     Write-Host "    [5] Kilo Code" -ForegroundColor Cyan
     Write-Host "    [6] Roo Code" -ForegroundColor Cyan
