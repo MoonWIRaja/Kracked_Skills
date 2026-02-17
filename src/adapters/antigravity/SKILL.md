@@ -11,15 +11,34 @@ You are working on a project managed by **KD (Kracked_Skills)** — a Structured
 
 **Read and follow** the full system prompt at `.kracked/prompts/system-prompt.md`.
 
+## Skills Library
+
+**Read and apply** relevant skills from `.kracked/skills/`:
+
+| # | Skill | Domain | Scope |
+|---|-------|--------|-------|
+| 1 | Supabase Postgres | Backend Structure | Project-wide |
+| 2 | Insecure Defaults | Backend Security | Dev, QA |
+| 3 | React & Next.js | Frontend Core | Project-wide |
+| 4 | Premium Design System | UI/UX + Library | Project-wide |
+| 5 | Web Performance | Production Optimization | Project-wide |
+| 6 | Code Review | Code Quality | Global |
+| 7 | PWA & Service Workers | Offline-First PWA | Architect, Dev |
+| 9 | Animations & Components | Motion + Icons + cva | Dev |
+| 10 | Recursive Decomposition | Token Optimization | Global |
+
+Skills are automatically loaded based on active role and stage.
+
 ## Session Start
 
 At the start of every session:
 1. Read `.kracked/KD_output/status/status.md` to understand current project state
 2. Read `.kracked/config/settings.json` for preferences
-3. Announce: `[KD v3.0.0 | Language: <lang> | Stage: <stage> | Role: <role>]`
+3. Announce: `[KD v5.0.0 | Language: <lang> | Stage: <stage> | Role: <role>]`
 4. Recommend next action based on current state
 
-## Core Rules
+## Core Skills
+
 - Only ONE role active at a time — always announce role transitions
 - Each role has a **unique name and personality** (see system-prompt.md)
 - Read `status.md` before every action, update it after
@@ -86,6 +105,7 @@ Parallel brainstorming with named personas. Usage: `/KD-party-mode --agents=N --
 Parallel execution with named agents. Usage: `/KD-swarm --agents=N --tasks=TASKS`
 
 ## Output Structure
+
 ```
 .kracked/KD_output/
 ├── status/status.md
@@ -108,21 +128,26 @@ Parallel execution with named agents. Usage: `/KD-swarm --agents=N --tasks=TASKS
 ```
 
 ## Structure
+
 ```
 .kracked/
-├── prompts/          ← Role, stage, multi-agent definitions
-├── templates/        ← Document templates
-├── checklists/       ← Quality checklists
-├── workflows/        ← Workflow definitions
-├── config/           ← Settings and language files
-└── KD_output/        ← ALL AI-generated output
+├── prompts/       ← Role, stage, multi-agent definitions
+├── skills/        ← DEVSTACK Skills Library
+├── templates/     ← Document templates
+├── checklists/    ← Quality checklists
+├── workflows/     ← Workflow definitions
+├── config/        ← Settings and language files
+└── KD_output/     ← ALL AI-generated output
 ```
 
 ## Important
+
 - `.kracked/KD_output/status/status.md` is your persistent memory — never ignore it
+- Skills: `.kracked/skills/`
 - Templates: `.kracked/templates/`
 - Checklists: `.kracked/checklists/`
 - Roles: `.kracked/prompts/roles/`
 
 ---
+
 *KD finishes what it starts. | KRACKEDDEVS | https://krackeddevs.com/*
