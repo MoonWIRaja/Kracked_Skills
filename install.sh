@@ -910,6 +910,17 @@ parse_args() {
     done
 }
 
+remove_legacy() {
+    log_info "Cleaning up legacy adapter files..."
+    local legacy=".antigravity CLAUDE.md .cursorrules .clinerules .kilocode .kilocodemodes .kilocodemodes.json"
+    for item in $legacy; do
+        if [[ -e "${TARGET_DIR}/$item" ]]; then
+            rm -rf "${TARGET_DIR}/$item"
+            log_verbose "  Cleaned up legacy: $item"
+        fi
+    done
+}
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -922,6 +933,10 @@ main() {
     ask_target
     ask_language
     confirm_installation
+    
+    # Clean legacy before install starts
+    remove_legacy
+
     create_directories
     download_files
     create_config

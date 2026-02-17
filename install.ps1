@@ -699,6 +699,21 @@ function Show-Success {
     Write-Host ""
 }
 
+function Remove-Legacy {
+    Write-Info "Cleaning up legacy adapter files..."
+    $legacy = @(
+        ".antigravity", "CLAUDE.md", ".cursorrules", ".clinerules", 
+        ".kilocode", ".kilocodemodes", ".kilocodemodes.json"
+    )
+    foreach ($item in $legacy) {
+        $p = Join-Path $TargetDir $item
+        if (Test-Path $p) {
+            Remove-Item $p -Recurse -Force | Out-Null
+            Write-Verbose "  Cleaned up legacy: $item"
+        }
+    }
+}
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -730,6 +745,9 @@ function Main {
     $selTargets = Ask-Target
     $selLang = Ask-Language
     Confirm-Install -T $selTargets -L $selLang -D $TargetDir
+
+    # Clean legacy before install starts
+    Remove-Legacy
 
     # Install
     New-KDDirs
