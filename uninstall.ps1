@@ -92,6 +92,33 @@ if (Test-Path $antigravityDir) {
     Write-Info "Removed .antigravity/"
 }
 
+# Remove Cline adapter files
+$clinerulesFile = Join-Path $TargetDir ".clinerules"
+if (Test-Path $clinerulesFile) {
+    Remove-Item $clinerulesFile -Force
+    Write-Info "Removed .clinerules"
+}
+
+$clineDir = Join-Path $TargetDir ".cline"
+if (Test-Path $clineDir) {
+    Remove-Item $clineDir -Recurse -Force
+    Write-Info "Removed .cline/"
+}
+
+# Remove Kilo Code adapter files
+$kilocodeFile = Join-Path $TargetDir ".kilocode"
+if (Test-Path $kilocodeFile) {
+    Remove-Item $kilocodeFile -Force
+    Write-Info "Removed .kilocode"
+}
+
+# Remove Roo Code adapter files
+$rooFile = Join-Path $TargetDir ".roo"
+if (Test-Path $rooFile) {
+    Remove-Item $rooFile -Force
+    Write-Info "Removed .roo"
+}
+
 Write-Host ""
 Write-Ok "  Kracked_Skills has been uninstalled successfully."
 Write-Host "  Your status.md backup has been preserved."
