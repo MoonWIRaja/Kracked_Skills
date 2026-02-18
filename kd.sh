@@ -2,7 +2,7 @@
 
 # ═══════════════════════════════════════════════════════════════
 # KD v5.0.0 — Shell Wrapper for TUI
-# AI Skill by KRACKEDDEVS - https://krackeddevs.com/
+# AI Skill by KRACKEDDEVS - https://kd.cli/ (krackeddevs.com/)
 # ═══════════════════════════════════════════════════════════════
 
 KD_VERSION="5.0.0"
@@ -46,7 +46,8 @@ fi
 
 # Check if we're in a KD repo directory
 if [ -f "kd.js" ]; then
-    # Run local TUI
+    # Run local TUI with TTY
+    exec < /dev/tty
     node kd.js "$@"
 else
     # Download KD to a local folder
@@ -86,7 +87,11 @@ else
     echo -e "${GREEN}Launching KD TUI...${NC}"
     echo ""
     
-    # Run from the KD folder with proper TTY
+    # Redirect stdin to /dev/tty for interactive input
+    # This is crucial for piped execution
+    exec < /dev/tty
+    
+    # Run from the KD folder
     cd "$KD_FOLDER"
     node kd.js "$@"
 fi
