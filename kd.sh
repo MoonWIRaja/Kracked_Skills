@@ -71,20 +71,15 @@ fi
 echo -e "${GREEN}Launching KD TUI...${NC}"
 echo ""
 
-# Run node with proper stdin
+# Change to cache folder
 cd "$KD_FOLDER"
 
-# For piped execution, we need to read from /dev/tty
-# But we need to handle it carefully
+# Run with TTY handling
+# For curl | bash, we need to reconnect stdin to the terminal
 if [ -t 0 ]; then
-    # Already have a TTY
+    # Already have TTY
     node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
 else
-    # No TTY (piped), use /dev/tty but in a subshell to avoid issues
-    (
-        exec < /dev/tty
-        node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
-    )
+    # Piped execution - use /dev/tty for stdin
+    node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@" < /dev/tty
 fi
-
-exit 0
