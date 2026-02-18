@@ -44,6 +44,7 @@ function getOption(name, shortName) {
 
 const targetOption = getOption('target', 't');
 const langOption = getOption('lang', 'l');
+const installDir = getOption('install-dir', 'd');
 
 // Main function
 async function main() {
@@ -58,21 +59,22 @@ async function main() {
             target: targetOption, 
             lang: langOption, 
             nonInteractive, 
-            force 
+            force,
+            installDir
           });
           return;
         
         case 'update':
         case 'u':
           showBanner();
-          await updateKD({ nonInteractive, force });
+          await updateKD({ nonInteractive, force, installDir });
           return;
         
         case 'uninstall':
         case 'x':
         case 'remove':
           showBanner();
-          await uninstallKD({ nonInteractive, force });
+          await uninstallKD({ nonInteractive, force, installDir });
           return;
         
         case 'about':

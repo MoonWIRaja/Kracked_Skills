@@ -50,8 +50,11 @@ export async function installKD(options = {}) {
   console.log(chalk.cyan('  ───────────────────────────────────────────'));
   console.log();
 
+  // Use installDir if provided, otherwise use current directory
+  const workDir = options.installDir || process.cwd();
+  
   // Check existing installation
-  const kdPath = path.join(process.cwd(), KD_DIR);
+  const kdPath = path.join(workDir, KD_DIR);
   if (fs.existsSync(kdPath)) {
     if (options.force) {
       console.log(chalk.yellow('  ⚠️  Existing installation found. Overwriting...'));
@@ -143,7 +146,7 @@ export async function installKD(options = {}) {
       console.log(chalk.cyan('  │') + chalk.white('       INSTALLATION SUMMARY              ') + chalk.cyan('│'));
       console.log(chalk.cyan('  ├─────────────────────────────────────────┤'));
       console.log(chalk.cyan('  │') + chalk.white(`  Version:      ${VERSION}`) + ' '.repeat(40 - VERSION.length) + chalk.cyan('│'));
-      console.log(chalk.cyan('  │') + chalk.white(`  Directory:    ./${KD_DIR}`) + ' '.repeat(30) + chalk.cyan('│'));
+      console.log(chalk.cyan('  │') + chalk.white(`  Directory:    ${workDir}/${KD_DIR}`) + chalk.cyan('│'));
       console.log(chalk.cyan('  │') + chalk.white(`  Target(s):    ${selectedTools.join(', ')}`) + chalk.cyan('│'));
       console.log(chalk.cyan('  │') + chalk.white(`  Language:     ${language}`) + chalk.cyan('│'));
       console.log(chalk.cyan('  └─────────────────────────────────────────┘'));
@@ -167,26 +170,26 @@ export async function installKD(options = {}) {
     try {
       // Create directories
       spinner.text = 'Creating directory structure...';
-      await createDirectories();
+      await createDirectories(workDir);
       
       // Download files
       spinner.text = 'Downloading KD files...';
-      await downloadFiles();
+      await downloadFiles(workDir);
       
       // Create config
       spinner.text = 'Creating configuration...';
-      await createConfig(selectedTools, language);
+      await createConfig(workDir, selectedTools, language);
       
       // Setup adapters
       spinner.text = 'Setting up adapters...';
       for (const tool of selectedTools) {
-        await setupAdapter(tool);
+        await setupAdapter(workDir, tool);
       }
 
       spinner.succeed('Installation complete!');
       
       // Success message
-      showSuccess(selectedTools, language);
+      showSuccess(workDir, selectedTools, language);
 
     } catch (error) {
       spinner.fail('Installation failed!');
@@ -200,7 +203,7 @@ export async function installKD(options = {}) {
   }
 }
 
-async function createDirectories() {
+async function createDirectories(workDir) {
   const dirs = [
     KD_DIR,
     `${KD_DIR}/prompts`,
@@ -218,14 +221,14 @@ async function createDirectories() {
   ];
 
   for (const dir of dirs) {
-    const fullPath = path.join(process.cwd(), dir);
+    const fullPath = path.join(workDir, dir);
     if (!fs.existsSync(fullPath)) {
       fs.mkdirSync(fullPath, { recursive: true });
     }
   }
 }
 
-async function downloadFiles() {
+async function downloadFiles(workDir) {
   const files = [
     { url: `${KD_RAW_URL}/src/prompts/system-prompt.md`, dest: `${KD_DIR}/prompts/system-prompt.md` },
     { url: `${KD_RAW_URL}/src/prompts/role-switcher.md`, dest: `${KD_DIR}/prompts/role-switcher.md` },
@@ -247,7 +250,7 @@ async function downloadFiles() {
   for (const file of files) {
     try {
       const response = await axios.get(file.url);
-      const destPath = path.join(process.cwd(), file.dest);
+      const destPath = path.join(workDir, file.dest);
       fs.writeFileSync(destPath, response.data);
     } catch (error) {
       // Skip if file not found
@@ -255,8 +258,8 @@ async function downloadFiles() {
   }
 }
 
-async function createConfig(tools, language) {
-  const projName = path.basename(process.cwd());
+async function createConfig(workDir, tools, language) {
+  const projName = path.basename(workDir);
   const now = new Date().toISOString();
 
   const config = {
@@ -270,7 +273,7 @@ async function createConfig(tools, language) {
     branding: 'KRACKEDDEVS',
   };
 
-  const configPath = path.join(process.cwd(), `${KD_DIR}/config/settings.json`);
+  const configPath = path.join(workDir, `${KD_DIR}/config/settings.json`);
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
 
   // Create status.md
@@ -290,11 +293,11 @@ async function createConfig(tools, language) {
 1. Run /KD-analyze to begin discovery phase
 `;
 
-  const statusPath = path.join(process.cwd(), `${KD_DIR}/KD_output/status/status.md`);
+  const statusPath = path.join(workDir, `${KD_DIR}/KD_output/status/status.md`);
   fs.writeFileSync(statusPath, statusContent);
 }
 
-async function setupAdapter(tool) {
+async function setupAdapter(workDir, tool) {
   const adapterConfigs = {
     'claude-code': { dir: '.claude', file: 'CLAUDE.md' },
     'cursor': { dir: '.cursor', file: '.cursorrules' },
@@ -309,7 +312,7 @@ async function setupAdapter(tool) {
 Read .kracked/prompts/system-prompt.md for full instructions.
 Type /KD for command menu. Status: .kracked/KD_output/status/status.md`;
     
-    const dirPath = path.join(process.cwd(), config.dir);
+    const dirPath = path.join(workDir, config.dir);
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true });
     }
@@ -318,7 +321,7 @@ Type /KD for command menu. Status: .kracked/KD_output/status/status.md`;
   }
 }
 
-function showSuccess(tools, language) {
+function showSuccess(workDir, tools, language) {
   console.log();
   console.log(chalk.green('  ╔═══════════════════════════════════════════════════════════════╗'));
   console.log(chalk.green('  ║') + chalk.white('                                                               ') + chalk.green('║'));
@@ -333,7 +336,7 @@ function showSuccess(tools, language) {
   console.log(chalk.cyan('  📋 Installed:'));
   console.log(chalk.white(`     Adapters:  ${tools.join(', ')}`));
   console.log(chalk.white(`     Language:  ${language}`));
-  console.log(chalk.white(`     Directory: ${process.cwd()}/${KD_DIR}`));
+  console.log(chalk.white(`     Directory: ${workDir}/${KD_DIR}`));
   console.log();
   console.log(chalk.cyan('  📝 Next Steps:'));
   console.log(chalk.white('     1. Open your AI tool'));

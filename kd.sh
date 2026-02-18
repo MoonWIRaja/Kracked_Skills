@@ -2,7 +2,7 @@
 
 # ═══════════════════════════════════════════════════════════════
 # KD v5.0.0 — Shell Wrapper for TUI
-# AI Skill by KRACKEDDEVS - https://kd.cli/ (krackeddevs.com/)
+# AI Skill by KRACKEDDEVS - https://krackeddevs.com/
 # ═══════════════════════════════════════════════════════════════
 
 KD_VERSION="5.0.0"
@@ -15,6 +15,9 @@ GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
+
+# Save the original directory where user ran the command
+ORIGINAL_DIR="$(pwd)"
 
 # Banner
 show_banner() {
@@ -88,10 +91,9 @@ else
     echo ""
     
     # Redirect stdin to /dev/tty for interactive input
-    # This is crucial for piped execution
     exec < /dev/tty
     
-    # Run from the KD folder
+    # Run from the KD folder but pass original directory as argument
     cd "$KD_FOLDER"
-    node kd.js "$@"
+    node kd.js --install-dir="$ORIGINAL_DIR" "$@"
 fi
