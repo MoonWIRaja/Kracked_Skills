@@ -31,7 +31,7 @@ const LANGUAGES = [
   { key: 'C', name: 'Custom (type your own)', value: 'custom' },
 ];
 
-// Full command list
+// Full command list - synced with src/adapters/*/commands and workflows
 const COMMANDS = [
   'KD', 'KD-analyze', 'KD-api-design', 'KD-architecture', 'KD-brainstorm',
   'KD-build-agent', 'KD-build-module', 'KD-build-workflow', 'KD-code-review',
@@ -55,7 +55,7 @@ const COMMANDS = [
   'KD-test-atdd', 'KD-test-automate', 'KD-test-ci', 'KD-test-design',
   'KD-test-frame', 'KD-test-nfr', 'KD-test-sprite', 'KD-test-teach',
   'KD-test-trace', 'KD-tool-selector', 'KD-ux-design', 'KD-validate',
-  'KD-validate-agent', 'KD-validate-workflow', 'KD-version-check'
+  'KD-validate-agent', 'KD-validate-workflow'
 ];
 
 function ask(rl, question) {
