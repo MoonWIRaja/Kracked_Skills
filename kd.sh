@@ -34,59 +34,59 @@ show_banner() {
     echo ""
 }
 
-# Download and run TUI
-run_tui() {
-    show_banner
+# Main
+show_banner
+
+# Check if Node.js is installed
+if ! command -v node &> /dev/null; then
+    echo -e "${RED}Error: Node.js is not installed.${NC}"
+    echo "Please install Node.js from https://nodejs.org/"
+    exit 1
+fi
+
+# Check if we're in a KD repo directory
+if [ -f "kd.js" ]; then
+    # Run local TUI
+    node kd.js "$@"
+else
+    # Download KD to a local folder
+    KD_FOLDER="$HOME/.kd-tui"
     
-    # Check if Node.js is installed
-    if ! command -v node &> /dev/null; then
-        echo -e "${RED}Error: Node.js is not installed.${NC}"
-        echo "Please install Node.js from https://nodejs.org/"
+    echo -e "${CYAN}Setting up KD TUI...${NC}"
+    
+    # Create folder
+    mkdir -p "$KD_FOLDER/src/tui/screens"
+    
+    # Download files
+    echo -e "${CYAN}Downloading files...${NC}"
+    
+    curl -fsSL "$KD_RAW_URL/kd.js" -o "$KD_FOLDER/kd.js" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/package.json" -o "$KD_FOLDER/package.json" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/src/tui/banner.js" -o "$KD_FOLDER/src/tui/banner.js" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/src/tui/screens/main-menu.js" -o "$KD_FOLDER/src/tui/screens/main-menu.js" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/src/tui/screens/install.js" -o "$KD_FOLDER/src/tui/screens/install.js" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/src/tui/screens/update.js" -o "$KD_FOLDER/src/tui/screens/update.js" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/src/tui/screens/uninstall.js" -o "$KD_FOLDER/src/tui/screens/uninstall.js" 2>/dev/null
+    curl -fsSL "$KD_RAW_URL/src/tui/screens/about.js" -o "$KD_FOLDER/src/tui/screens/about.js" 2>/dev/null
+    
+    # Check if files were downloaded
+    if [ ! -f "$KD_FOLDER/kd.js" ]; then
+        echo -e "${RED}Error: Failed to download KD files.${NC}"
         exit 1
     fi
     
-    # Check if we're in a KD repo directory
-    if [ -f "kd.js" ]; then
-        # Run local TUI
-        node kd.js "$@"
-    else
-        # Download and run remote TUI
-        echo -e "${CYAN}Downloading KD TUI...${NC}"
-        
-        # Create temp directory
-        TEMP_DIR=$(mktemp -d)
-        
-        # Download kd.js and package.json
-        curl -fsSL "$KD_RAW_URL/kd.js" -o "$TEMP_DIR/kd.js" 2>/dev/null
-        curl -fsSL "$KD_RAW_URL/package.json" -o "$TEMP_DIR/package.json" 2>/dev/null
-        
-        # Download TUI modules
-        mkdir -p "$TEMP_DIR/src/tui/screens"
-        curl -fsSL "$KD_RAW_URL/src/tui/banner.js" -o "$TEMP_DIR/src/tui/banner.js" 2>/dev/null
-        curl -fsSL "$KD_RAW_URL/src/tui/screens/main-menu.js" -o "$TEMP_DIR/src/tui/screens/main-menu.js" 2>/dev/null
-        curl -fsSL "$KD_RAW_URL/src/tui/screens/install.js" -o "$TEMP_DIR/src/tui/screens/install.js" 2>/dev/null
-        curl -fsSL "$KD_RAW_URL/src/tui/screens/update.js" -o "$TEMP_DIR/src/tui/screens/update.js" 2>/dev/null
-        curl -fsSL "$KD_RAW_URL/src/tui/screens/uninstall.js" -o "$TEMP_DIR/src/tui/screens/uninstall.js" 2>/dev/null
-        curl -fsSL "$KD_RAW_URL/src/tui/screens/about.js" -o "$TEMP_DIR/src/tui/screens/about.js" 2>/dev/null
-        
-        # Install dependencies and run
-        cd "$TEMP_DIR"
-        
+    # Install dependencies if needed
+    if [ ! -d "$KD_FOLDER/node_modules" ]; then
         if command -v npm &> /dev/null; then
             echo -e "${CYAN}Installing dependencies...${NC}"
-            npm install --silent 2>/dev/null
+            (cd "$KD_FOLDER" && npm install --silent 2>/dev/null)
         fi
-        
-        echo -e "${GREEN}Launching KD TUI...${NC}"
-        echo ""
-        
-        node kd.js "$@"
-        
-        # Cleanup
-        cd - > /dev/null
-        rm -rf "$TEMP_DIR"
     fi
-}
-
-# Main
-run_tui "$@"
+    
+    echo -e "${GREEN}Launching KD TUI...${NC}"
+    echo ""
+    
+    # Run from the KD folder with proper TTY
+    cd "$KD_FOLDER"
+    node kd.js "$@"
+fi

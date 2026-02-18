@@ -4,16 +4,6 @@
     AI Skill by KRACKEDDEVS - https://krackeddevs.com/
 .DESCRIPTION
     Downloads and runs KD TUI for installing, updating, or uninstalling KD.
-.PARAMETER Command
-    Command to run: install, update, uninstall, about, help
-.PARAMETER Target
-    Target AI tool(s) for install
-.PARAMETER Language
-    Language preference for install
-.PARAMETER NonInteractive
-    Skip prompts, use defaults
-.PARAMETER Force
-    Force operation
 #>
 param(
     [Parameter(Position=0)]
@@ -48,84 +38,90 @@ function Show-Banner {
 }
 
 # Main
-function Main {
-    Show-Banner
+Show-Banner
 
-    # Check Node.js
-    if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-        Write-Host "  Error: Node.js is not installed." -ForegroundColor Red
-        Write-Host "  Please install Node.js from https://nodejs.org/" -ForegroundColor Gray
-        exit 1
-    }
-
-    # Check if we're in KD repo directory
-    if (Test-Path "kd.js") {
-        # Run local TUI
-        $args = @($Command)
-        if ($Target) { $args += "--target", $Target }
-        if ($Language) { $args += "--lang", $Language }
-        if ($NonInteractive) { $args += "--non-interactive" }
-        if ($Force) { $args += "--force" }
-        
-        node kd.js @args
-    } else {
-        # Download and run remote TUI
-        Write-Host "  Downloading KD TUI..." -ForegroundColor Cyan
-        
-        $tempDir = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "kd-tui-$(Get-Random)")
-        New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
-        
-        try {
-            # Download files
-            $files = @(
-                @{ Url = "$KD_RAW_URL/kd.js"; Dest = "kd.js" },
-                @{ Url = "$KD_RAW_URL/package.json"; Dest = "package.json" },
-                @{ Url = "$KD_RAW_URL/src/tui/banner.js"; Dest = "src/tui/banner.js" },
-                @{ Url = "$KD_RAW_URL/src/tui/screens/main-menu.js"; Dest = "src/tui/screens/main-menu.js" },
-                @{ Url = "$KD_RAW_URL/src/tui/screens/install.js"; Dest = "src/tui/screens/install.js" },
-                @{ Url = "$KD_RAW_URL/src/tui/screens/update.js"; Dest = "src/tui/screens/update.js" },
-                @{ Url = "$KD_RAW_URL/src/tui/screens/uninstall.js"; Dest = "src/tui/screens/uninstall.js" },
-                @{ Url = "$KD_RAW_URL/src/tui/screens/about.js"; Dest = "src/tui/screens/about.js" }
-            )
-            
-            foreach ($file in $files) {
-                $destPath = Join-Path $tempDir $file.Dest
-                $destDir = Split-Path $destPath -Parent
-                if (-not (Test-Path $destDir)) {
-                    New-Item -ItemType Directory -Path $destDir -Force | Out-Null
-                }
-                Invoke-WebRequest -Uri $file.Url -OutFile $destPath -UseBasicParsing
-            }
-            
-            # Install dependencies
-            if (Get-Command npm -ErrorAction SilentlyContinue) {
-                Write-Host "  Installing dependencies..." -ForegroundColor Cyan
-                Push-Location $tempDir
-                npm install --silent 2>$null
-                Pop-Location
-            }
-            
-            Write-Host "  Launching KD TUI..." -ForegroundColor Green
-            Write-Host ""
-            
-            # Build args
-            $args = @($Command)
-            if ($Target) { $args += "--target", $Target }
-            if ($Language) { $args += "--lang", $Language }
-            if ($NonInteractive) { $args += "--non-interactive" }
-            if ($Force) { $args += "--force" }
-            
-            # Run
-            Push-Location $tempDir
-            node kd.js @args
-            Pop-Location
-            
-        } finally {
-            # Cleanup
-            Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
-        }
-    }
+# Check Node.js
+if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+    Write-Host "  Error: Node.js is not installed." -ForegroundColor Red
+    Write-Host "  Please install Node.js from https://nodejs.org/" -ForegroundColor Gray
+    exit 1
 }
 
-# Run
-Main
+# Check if we're in KD repo directory
+if (Test-Path "kd.js") {
+    # Run local TUI
+    $args = @($Command)
+    if ($Target) { $args += "--target", $Target }
+    if ($Language) { $args += "--lang", $Language }
+    if ($NonInteractive) { $args += "--non-interactive" }
+    if ($Force) { $args += "--force" }
+    
+    node kd.js @args
+} else {
+    # Download KD to a local folder
+    $KD_FOLDER = Join-Path $env:USERPROFILE ".kd-tui"
+    
+    Write-Host "  Setting up KD TUI..." -ForegroundColor Cyan
+    
+    # Create folder
+    $screensFolder = Join-Path $KD_FOLDER "src/tui/screens"
+    if (-not (Test-Path $screensFolder)) {
+        New-Item -ItemType Directory -Path $screensFolder -Force | Out-Null
+    }
+    
+    # Download files
+    Write-Host "  Downloading files..." -ForegroundColor Cyan
+    
+    $files = @(
+        @{ Url = "$KD_RAW_URL/kd.js"; Dest = "kd.js" },
+        @{ Url = "$KD_RAW_URL/package.json"; Dest = "package.json" },
+        @{ Url = "$KD_RAW_URL/src/tui/banner.js"; Dest = "src/tui/banner.js" },
+        @{ Url = "$KD_RAW_URL/src/tui/screens/main-menu.js"; Dest = "src/tui/screens/main-menu.js" },
+        @{ Url = "$KD_RAW_URL/src/tui/screens/install.js"; Dest = "src/tui/screens/install.js" },
+        @{ Url = "$KD_RAW_URL/src/tui/screens/update.js"; Dest = "src/tui/screens/update.js" },
+        @{ Url = "$KD_RAW_URL/src/tui/screens/uninstall.js"; Dest = "src/tui/screens/uninstall.js" },
+        @{ Url = "$KD_RAW_URL/src/tui/screens/about.js"; Dest = "src/tui/screens/about.js" }
+    )
+    
+    foreach ($file in $files) {
+        $destPath = Join-Path $KD_FOLDER $file.Dest
+        try {
+            Invoke-WebRequest -Uri $file.Url -OutFile $destPath -UseBasicParsing
+        } catch {
+            Write-Host "  Warning: Failed to download $($file.Dest)" -ForegroundColor Yellow
+        }
+    }
+    
+    # Check if kd.js was downloaded
+    $kdJsPath = Join-Path $KD_FOLDER "kd.js"
+    if (-not (Test-Path $kdJsPath)) {
+        Write-Host "  Error: Failed to download KD files." -ForegroundColor Red
+        exit 1
+    }
+    
+    # Install dependencies if needed
+    $nodeModulesPath = Join-Path $KD_FOLDER "node_modules"
+    if (-not (Test-Path $nodeModulesPath)) {
+        if (Get-Command npm -ErrorAction SilentlyContinue) {
+            Write-Host "  Installing dependencies..." -ForegroundColor Cyan
+            Push-Location $KD_FOLDER
+            npm install --silent 2>$null
+            Pop-Location
+        }
+    }
+    
+    Write-Host "  Launching KD TUI..." -ForegroundColor Green
+    Write-Host ""
+    
+    # Build args
+    $args = @($Command)
+    if ($Target) { $args += "--target", $Target }
+    if ($Language) { $args += "--lang", $Language }
+    if ($NonInteractive) { $args += "--non-interactive" }
+    if ($Force) { $args += "--force" }
+    
+    # Run from KD folder
+    Push-Location $KD_FOLDER
+    node kd.js @args
+    Pop-Location
+}
