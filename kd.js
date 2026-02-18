@@ -96,6 +96,12 @@ async function main() {
     await mainMenu();
     
   } catch (error) {
+    // Handle user cancel (Ctrl+C)
+    if (error.name === 'ExitPromptError' || error.message?.includes('force closed')) {
+      console.log('\n\n👋 Goodbye!');
+      console.log('KD finishes what it starts.');
+      process.exit(0);
+    }
     console.error('\n❌ Error:', error.message);
     process.exit(1);
   }
