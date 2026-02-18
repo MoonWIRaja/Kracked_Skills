@@ -214,11 +214,14 @@ export async function installKD(options = {}) {
       
       // Success message
       showSuccess(workDir, selectedTools, language);
+      
+      // Exit after installation
+      process.exit(0);
 
     } catch (error) {
       spinner.fail('Installation failed!');
       console.error(chalk.red(`  Error: ${error.message}`));
-      throw error;
+      process.exit(1);
     }
 
   } catch (error) {
