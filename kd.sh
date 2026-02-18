@@ -47,53 +47,48 @@ if ! command -v node &> /dev/null; then
     exit 1
 fi
 
-# Check if we're in a KD repo directory
-if [ -f "kd.js" ]; then
-    # Run local TUI with TTY
-    exec < /dev/tty
-    node kd.js "$@"
-else
-    # Download KD to a local folder
-    KD_FOLDER="$HOME/.kd-tui"
-    
-    echo -e "${CYAN}Setting up KD TUI...${NC}"
-    
-    # Create folder
-    mkdir -p "$KD_FOLDER/src/tui/screens"
-    
-    # Download files
-    echo -e "${CYAN}Downloading files...${NC}"
-    
-    curl -fsSL "$KD_RAW_URL/kd.js" -o "$KD_FOLDER/kd.js" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/package.json" -o "$KD_FOLDER/package.json" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/src/tui/banner.js" -o "$KD_FOLDER/src/tui/banner.js" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/src/tui/screens/main-menu.js" -o "$KD_FOLDER/src/tui/screens/main-menu.js" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/src/tui/screens/install.js" -o "$KD_FOLDER/src/tui/screens/install.js" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/src/tui/screens/update.js" -o "$KD_FOLDER/src/tui/screens/update.js" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/src/tui/screens/uninstall.js" -o "$KD_FOLDER/src/tui/screens/uninstall.js" 2>/dev/null
-    curl -fsSL "$KD_RAW_URL/src/tui/screens/about.js" -o "$KD_FOLDER/src/tui/screens/about.js" 2>/dev/null
-    
-    # Check if files were downloaded
-    if [ ! -f "$KD_FOLDER/kd.js" ]; then
-        echo -e "${RED}Error: Failed to download KD files.${NC}"
-        exit 1
-    fi
-    
-    # Install dependencies if needed
-    if [ ! -d "$KD_FOLDER/node_modules" ]; then
-        if command -v npm &> /dev/null; then
-            echo -e "${CYAN}Installing dependencies...${NC}"
-            (cd "$KD_FOLDER" && npm install --silent 2>/dev/null)
-        fi
-    fi
-    
-    echo -e "${GREEN}Launching KD TUI...${NC}"
-    echo ""
-    
-    # Redirect stdin to /dev/tty for interactive input
-    exec < /dev/tty
-    
-    # Run from the KD folder but pass original directory as argument
-    cd "$KD_FOLDER"
-    node kd.js --install-dir="$ORIGINAL_DIR" "$@"
+# Download KD to a cache folder
+KD_FOLDER="$HOME/.kd-tui"
+
+# Always download/update files to cache
+echo -e "${CYAN}Setting up KD TUI...${NC}"
+
+# Create folder
+mkdir -p "$KD_FOLDER/src/tui/screens"
+
+# Download files
+echo -e "${CYAN}Downloading files...${NC}"
+
+curl -fsSL "$KD_RAW_URL/kd.js" -o "$KD_FOLDER/kd.js" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/package.json" -o "$KD_FOLDER/package.json" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/src/tui/banner.js" -o "$KD_FOLDER/src/tui/banner.js" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/src/tui/screens/main-menu.js" -o "$KD_FOLDER/src/tui/screens/main-menu.js" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/src/tui/screens/install.js" -o "$KD_FOLDER/src/tui/screens/install.js" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/src/tui/screens/update.js" -o "$KD_FOLDER/src/tui/screens/update.js" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/src/tui/screens/uninstall.js" -o "$KD_FOLDER/src/tui/screens/uninstall.js" 2>/dev/null
+curl -fsSL "$KD_RAW_URL/src/tui/screens/about.js" -o "$KD_FOLDER/src/tui/screens/about.js" 2>/dev/null
+
+# Check if files were downloaded
+if [ ! -f "$KD_FOLDER/kd.js" ]; then
+    echo -e "${RED}Error: Failed to download KD files.${NC}"
+    exit 1
 fi
+
+# Install dependencies if needed
+if [ ! -d "$KD_FOLDER/node_modules" ]; then
+    if command -v npm &> /dev/null; then
+        echo -e "${CYAN}Installing dependencies...${NC}"
+        (cd "$KD_FOLDER" && npm install --silent 2>/dev/null)
+    fi
+fi
+
+echo -e "${GREEN}Launching KD TUI...${NC}"
+echo ""
+
+# Redirect stdin to /dev/tty for interactive input
+exec < /dev/tty
+
+# Run from cache folder but ALWAYS pass original directory
+# This is the key fix - always pass --install-dir
+cd "$KD_FOLDER"
+node kd.js --install-dir="$ORIGINAL_DIR" "$@"
