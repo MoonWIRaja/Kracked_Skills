@@ -55,7 +55,7 @@ const COMMANDS = [
   'KD-test-atdd', 'KD-test-automate', 'KD-test-ci', 'KD-test-design',
   'KD-test-frame', 'KD-test-nfr', 'KD-test-sprite', 'KD-test-teach',
   'KD-test-trace', 'KD-tool-selector', 'KD-ux-design', 'KD-validate',
-  'KD-validate-agent', 'KD-validate-workflow'
+  'KD-validate-agent', 'KD-validate-workflow', 'KD-version-check'
 ];
 
 function ask(rl, question) {
