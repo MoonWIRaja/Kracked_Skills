@@ -98,10 +98,11 @@ export async function uninstallKD(options = {}) {
     console.log(chalk.green('  ✅ KD has been uninstalled successfully.'));
     console.log(chalk.gray('  Your project files were not affected.'));
     console.log();
-    console.log(chalk.cyan('  To reinstall, run: kd install'));
+    console.log(chalk.cyan('  To reinstall, run: curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/kd.sh | bash'));
     console.log();
     
-    process.exit(0);
+    // Force exit
+    setTimeout(() => process.exit(0), 100);
 
   } catch (error) {
     spinner.fail('Uninstall failed!');

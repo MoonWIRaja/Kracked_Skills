@@ -104,7 +104,8 @@ export async function updateKD(options = {}) {
     console.log(chalk.cyan('  KD finishes what it starts.'));
     console.log();
     
-    process.exit(0);
+    // Force exit
+    setTimeout(() => process.exit(0), 100);
 
   } catch (error) {
     spinner.fail('Update failed!');

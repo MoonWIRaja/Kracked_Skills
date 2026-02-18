@@ -221,8 +221,8 @@ export async function installKD(options = {}) {
       // Success message
       showSuccess(workDir, selectedTools, language);
       
-      // Exit after installation
-      process.exit(0);
+      // Force exit - clear any pending timers/intervals
+      setTimeout(() => process.exit(0), 100);
 
     } catch (error) {
       spinner.fail('Installation failed!');
