@@ -22,6 +22,7 @@ const command = args[0];
 // Non-interactive flags
 const nonInteractive = args.includes('--non-interactive') || args.includes('-ni');
 const force = args.includes('--force') || args.includes('-f');
+const noBanner = args.includes('--no-banner');
 
 // Parse options (handles both --option=value and --option value)
 function getOption(name, shortName) {
@@ -104,7 +105,9 @@ async function main() {
     }
     
     // Interactive TUI mode
-    showBanner();
+    if (!noBanner) {
+      showBanner();
+    }
     await mainMenu({ installDir });
     
   } catch (error) {

@@ -19,7 +19,7 @@ NC='\033[0m' # No Color
 # Save the original directory where user ran the command
 ORIGINAL_DIR="$(pwd)"
 
-# Banner
+# Banner (only shown in shell wrapper)
 show_banner() {
     echo -e "${CYAN}"
     echo "╔═══════════════════════════════════════════════════════════════════════╗"
@@ -85,10 +85,16 @@ fi
 echo -e "${GREEN}Launching KD TUI...${NC}"
 echo ""
 
-# Redirect stdin to /dev/tty for interactive input
-exec < /dev/tty
-
 # Run from cache folder but ALWAYS pass original directory
-# This is the key fix - always pass --install-dir
+# Don't show banner again in Node.js (pass --no-banner flag)
 cd "$KD_FOLDER"
-node kd.js --install-dir="$ORIGINAL_DIR" "$@" 2>&1
+
+# Check if we have a TTY available for interactive input
+if [ -t 0 ]; then
+    # We have a TTY, run normally
+    node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
+else
+    # No TTY (piped), redirect stdin from /dev/tty
+    exec < /dev/tty
+    node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
+fi
