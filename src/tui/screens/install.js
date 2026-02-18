@@ -34,25 +34,31 @@ const LANGUAGES = [
   { key: 'C', name: 'Custom (type your own)', value: 'custom' },
 ];
 
-// Command list for adapters
+// Full command list for adapters (synced with src/adapters/*/commands)
 const COMMANDS = [
-  'KD', 'KD-analyze', 'KD-architecture', 'KD-brainstorm', 'KD-build-agent',
-  'KD-build-module', 'KD-build-workflow', 'KD-code-review', 'KD-deployment-plan',
-  'KD-dev-story', 'KD-doc-project', 'KD-domain-research', 'KD-epics-and-stories',
-  'KD-fix-course', 'KD-game-arch', 'KD-game-architect', 'KD-game-brainstorm',
-  'KD-game-brief', 'KD-game-designer', 'KD-game-dev', 'KD-game-dev-story',
-  'KD-game-gdd', 'KD-game-narrative', 'KD-game-qa', 'KD-game-scrum-master',
-  'KD-game-solo', 'KD-game-story', 'KD-game-test-auto', 'KD-game-test-design',
-  'KD-game-test-perf', 'KD-game-test-plan', 'KD-game-writer', 'KD-help',
-  'KD-idea-coach', 'KD-idea-design-thinking', 'KD-idea-innovation',
-  'KD-idea-presenter', 'KD-idea-problem-solving', 'KD-market-research',
+  'KD', 'KD-analyze', 'KD-api-design', 'KD-architecture', 'KD-brainstorm',
+  'KD-build-agent', 'KD-build-module', 'KD-build-workflow', 'KD-code-review',
+  'KD-deployment-plan', 'KD-dev-story', 'KD-doc-project', 'KD-domain-research',
+  'KD-epics-and-stories', 'KD-fix-course', 'KD-game-arch', 'KD-game-architect',
+  'KD-game-brainstorm', 'KD-game-brief', 'KD-game-designer', 'KD-game-dev',
+  'KD-game-dev-story', 'KD-game-gdd', 'KD-game-narrative', 'KD-game-qa',
+  'KD-game-scrum-master', 'KD-game-solo', 'KD-game-story', 'KD-game-test-auto',
+  'KD-game-test-design', 'KD-game-test-perf', 'KD-game-test-plan', 'KD-game-writer',
+  'KD-help', 'KD-idea-coach', 'KD-idea-design-thinking', 'KD-idea-innovation',
+  'KD-idea-presenter', 'KD-idea-problem-solving', 'KD-idea-solver', 'KD-idea-storyteller',
+  'KD-idea-storytelling', 'KD-idea-strategist', 'KD-kickoff', 'KD-market-research',
   'KD-party-mode', 'KD-prd', 'KD-product-brief', 'KD-project-context',
-  'KD-qa-automate', 'KD-quick-dev', 'KD-quick-spec', 'KD-retrospective',
-  'KD-role-analyst', 'KD-role-architect', 'KD-role-dev', 'KD-role-pm',
-  'KD-role-qa', 'KD-sprint-planning', 'KD-sprint-status', 'KD-status',
-  'KD-swarm', 'KD-tech-research', 'KD-test-arch', 'KD-test-atdd',
-  'KD-test-automate', 'KD-test-ci', 'KD-test-design', 'KD-test-frame',
-  'KD-ux-design', 'KD-validate', 'KD-api-design', 'KD-kickoff', 'KD-refactor'
+  'KD-qa-automate', 'KD-quick-dev', 'KD-quick-spec', 'KD-refactor',
+  'KD-retrospective', 'KD-role-analyst', 'KD-role-architect', 'KD-role-bmad-master',
+  'KD-role-data-scientist', 'KD-role-dba', 'KD-role-dev', 'KD-role-devops',
+  'KD-role-mobile-dev', 'KD-role-pm', 'KD-role-qa', 'KD-role-release-manager',
+  'KD-role-scrum-master', 'KD-role-security', 'KD-role-solo-dev', 'KD-role-tech-writer',
+  'KD-role-ux', 'KD-scale-review', 'KD-sprint-planning', 'KD-sprint-status',
+  'KD-status', 'KD-swarm', 'KD-tech-research', 'KD-test', 'KD-test-arch',
+  'KD-test-atdd', 'KD-test-automate', 'KD-test-ci', 'KD-test-design',
+  'KD-test-frame', 'KD-test-nfr', 'KD-test-sprite', 'KD-test-teach',
+  'KD-test-trace', 'KD-tool-selector', 'KD-ux-design', 'KD-validate',
+  'KD-validate-agent', 'KD-validate-workflow'
 ];
 
 function ask(rl, question) {
