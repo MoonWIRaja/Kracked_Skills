@@ -13,52 +13,40 @@ KD_RAW_URL="https://raw.githubusercontent.com/$KD_REPO/main"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# Save the original directory where user ran the command
+# Save the original directory
 ORIGINAL_DIR="$(pwd)"
 
 # Banner
-show_banner() {
-    echo -e "${CYAN}"
-    echo "╔═══════════════════════════════════════════════════════════════════════╗"
-    echo "║                                                                       ║"
-    echo "║   ██╗  ██╗██████╗                                                     ║"
-    echo "║   ██║ ██╔╝██╔══██╗                                                    ║"
-    echo "║   █████╔╝ ██║  ██║    AI Skill by KRACKEDDEVS                          ║"
-    echo "║   ██╔═██╗ ██║  ██║    https://krackeddevs.com/                         ║"
-    echo "║   ██║  ██╗██████╔╝                                                    ║"
-    echo "║   ╚═╝  ╚═╝╚═════╝                                                     ║"
-    echo "║                                                                       ║"
-    echo "╚═══════════════════════════════════════════════════════════════════════╝"
-    echo -e "${NC}"
-    echo "  KD v$KD_VERSION | Structured Multi-Role AI Product Execution System"
-    echo ""
-}
+echo -e "${CYAN}"
+echo "╔═══════════════════════════════════════════════════════════════════════╗"
+echo "║                                                                       ║"
+echo "║   ██╗  ██╗██████╗                                                     ║"
+echo "║   ██║ ██╔╝██╔══██╗                                                    ║"
+echo "║   █████╔╝ ██║  ██║    AI Skill by KRACKEDDEVS                          ║"
+echo "║   ██╔═██╗ ██║  ██║    https://krackeddevs.com/                         ║"
+echo "║   ██║  ██╗██████╔╝                                                    ║"
+echo "║   ╚═╝  ╚═╝╚═════╝                                                     ║"
+echo "║                                                                       ║"
+echo "╚═══════════════════════════════════════════════════════════════════════╝"
+echo -e "${NC}"
+echo "  KD v$KD_VERSION | Structured Multi-Role AI Product Execution System"
+echo ""
 
-# Main
-show_banner
-
-# Check if Node.js is installed
+# Check Node.js
 if ! command -v node &> /dev/null; then
     echo -e "${RED}Error: Node.js is not installed.${NC}"
-    echo "Please install Node.js from https://nodejs.org/"
     exit 1
 fi
 
-# Download KD to a cache folder
+# Setup cache folder
 KD_FOLDER="$HOME/.kd-tui"
-
-# Always download/update files to cache
-echo -e "${CYAN}Setting up KD TUI...${NC}"
-
-# Create folder
 mkdir -p "$KD_FOLDER/src/tui/screens"
 
-# Download files
-echo -e "${CYAN}Downloading files...${NC}"
+echo -e "${CYAN}Setting up KD TUI...${NC}"
 
+# Download files
 curl -fsSL "$KD_RAW_URL/kd.js" -o "$KD_FOLDER/kd.js" 2>/dev/null
 curl -fsSL "$KD_RAW_URL/package.json" -o "$KD_FOLDER/package.json" 2>/dev/null
 curl -fsSL "$KD_RAW_URL/src/tui/banner.js" -o "$KD_FOLDER/src/tui/banner.js" 2>/dev/null
@@ -68,16 +56,14 @@ curl -fsSL "$KD_RAW_URL/src/tui/screens/update.js" -o "$KD_FOLDER/src/tui/screen
 curl -fsSL "$KD_RAW_URL/src/tui/screens/uninstall.js" -o "$KD_FOLDER/src/tui/screens/uninstall.js" 2>/dev/null
 curl -fsSL "$KD_RAW_URL/src/tui/screens/about.js" -o "$KD_FOLDER/src/tui/screens/about.js" 2>/dev/null
 
-# Check if files were downloaded
 if [ ! -f "$KD_FOLDER/kd.js" ]; then
     echo -e "${RED}Error: Failed to download KD files.${NC}"
     exit 1
 fi
 
-# Install dependencies if needed
+# Install dependencies
 if [ ! -d "$KD_FOLDER/node_modules" ]; then
     if command -v npm &> /dev/null; then
-        echo -e "${CYAN}Installing dependencies...${NC}"
         (cd "$KD_FOLDER" && npm install --silent 2>/dev/null)
     fi
 fi
@@ -85,14 +71,20 @@ fi
 echo -e "${GREEN}Launching KD TUI...${NC}"
 echo ""
 
-# Run from cache folder but ALWAYS pass original directory
+# Run node with proper stdin
 cd "$KD_FOLDER"
 
-# Check if /dev/tty exists and is readable (for interactive terminal)
-if [ -e /dev/tty ] && [ -r /dev/tty ]; then
-    # Redirect stdin from /dev/tty for interactive input
-    exec < /dev/tty
+# For piped execution, we need to read from /dev/tty
+# But we need to handle it carefully
+if [ -t 0 ]; then
+    # Already have a TTY
+    node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
+else
+    # No TTY (piped), use /dev/tty but in a subshell to avoid issues
+    (
+        exec < /dev/tty
+        node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
+    )
 fi
 
-# Run the TUI
-node kd.js --install-dir="$ORIGINAL_DIR" --no-banner "$@"
+exit 0
