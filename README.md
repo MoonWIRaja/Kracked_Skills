@@ -23,7 +23,7 @@ AI Skill by <a href="https://krackeddevs.com/">KRACKEDDEVS</a>
 
 ## 🚀 Quick Start
 
-### 🎯 TUI Install (Recommended)
+### 🎯 Install (Recommended)
 
 **All Platforms** (requires Node.js):
 ```bash
@@ -55,25 +55,13 @@ node kd.js help
 
 ### 🌍 Custom Language Support
 
-KD now supports **any language**! During install, you can:
+KD supports **any language**! During install, you can:
 - Select from preset languages (English, Bahasa Melayu, etc.)
 - **Type your own custom language**
 
 ```bash
 # Example: Install with custom language
 node kd.js install --lang="Bahasa Indonesia"
-```
-
-### Legacy Scripts (Still Available)
-
-**macOS / Linux** (bash + curl):
-```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.sh | bash
-```
-
-**Windows** (PowerShell):
-```powershell
-irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/install.ps1 | iex
 ```
 
 ### After Installation
@@ -251,34 +239,19 @@ KD_output/                    # All AI-generated output
 
 ### Update to Latest Version
 
-**macOS / Linux / Git Bash:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/update.sh | bash
-```
+# All platforms
+node kd.js update
 
-**Windows PowerShell:**
-```powershell
-irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/update.ps1 | iex
-```
-
-### Validation
-
-Check if your installation is healthy and all required files are present:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/validate.sh | bash
+# Or via wrapper
+curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/kd.sh | bash
+# Then select "Update" from menu
 ```
 
 ### Uninstallation
 
-**macOS / Linux / Git Bash:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/uninstall.sh | bash
-```
-
-**Windows PowerShell:**
-```powershell
-irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/uninstall.ps1 | iex
+node kd.js uninstall
 ```
 
 ---

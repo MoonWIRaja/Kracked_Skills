@@ -1,0 +1,62 @@
+# KD Scale Taxonomy
+# Determines workflow depth and artifact detail based on project scale
+
+scales:
+  SMALL:
+    description: "Quick project, minimal process"
+    triggers:
+      - team_size: 1
+      - timeline: "< 2 weeks"
+      - complexity: "low"
+    workflow_depth: "light"
+    artifacts:
+      - product-brief: "simplified"
+      - prd: "one-pager"
+      - architecture: "minimal"
+      - stories: "minimal"
+    gates_enabled: false
+    checkpoints_enabled: false
+
+  STANDARD:
+    description: "Normal project, standard process"
+    triggers:
+      - team_size: "2-5"
+      - timeline: "2-8 weeks"
+      - complexity: "medium"
+    workflow_depth: "standard"
+    artifacts:
+      - product-brief: "standard"
+      - prd: "full"
+      - architecture: "full"
+      - stories: "detailed"
+    gates_enabled: true
+    checkpoints_enabled: true
+
+  DEEP:
+    description: "Complex project, thorough process"
+    triggers:
+      - team_size: "6+"
+      - timeline: "> 8 weeks"
+      - complexity: "high"
+    workflow_depth: "comprehensive"
+    artifacts:
+      - product-brief: "comprehensive"
+      - prd: "comprehensive"
+      - architecture: "comprehensive"
+      - stories: "comprehensive"
+    gates_enabled: true
+    checkpoints_enabled: true
+    additional_phases:
+      - risk-assessment
+      - security-review
+      - performance-planning
+
+# Scale Detection Rules
+detection:
+  priority:
+    - complexity
+    - team_size
+    - timeline
+  
+  defaults:
+    when_uncertain: "STANDARD"

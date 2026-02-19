@@ -175,6 +175,22 @@ function createDirectories(workDir) {
     // TestSprite & GitHub Reader
     `${KD_DIR}/github-reader`, `${KD_DIR}/KD_output/testsprite`, `${KD_DIR}/KD_output/testsprite/screenshots`,
     `${KD_DIR}/KD_output/testsprite/videos`, `${KD_DIR}/KD_output/github-reader`,
+    // v5.0.0 - Agents, Gates, Knowledge
+    `${KD_DIR}/agents`, `${KD_DIR}/gates`, `${KD_DIR}/knowledge`,
+    `${KD_DIR}/knowledge/patterns`, `${KD_DIR}/knowledge/standards`,
+    // v5.0.0 - Workflow subdirectories
+    `${KD_DIR}/workflows/discovery/analyze`, `${KD_DIR}/workflows/discovery/brainstorm`,
+    `${KD_DIR}/workflows/discovery/domain-research`,
+    `${KD_DIR}/workflows/planning/prd-create`, `${KD_DIR}/workflows/planning/prd-validate`,
+    `${KD_DIR}/workflows/planning/epics-stories`,
+    `${KD_DIR}/workflows/architecture/design`, `${KD_DIR}/workflows/architecture/tech-research`,
+    `${KD_DIR}/workflows/architecture/api-design`,
+    `${KD_DIR}/workflows/implementation/story-generate`, `${KD_DIR}/workflows/implementation/dev-story`,
+    `${KD_DIR}/workflows/implementation/code-review`, `${KD_DIR}/workflows/implementation/refactor`,
+    `${KD_DIR}/workflows/quality/test-design`, `${KD_DIR}/workflows/quality/test-execute`,
+    `${KD_DIR}/workflows/quality/security-audit`,
+    `${KD_DIR}/workflows/deployment/plan`, `${KD_DIR}/workflows/deployment/execute`,
+    `${KD_DIR}/workflows/release/notes`, `${KD_DIR}/workflows/release/retrospective`,
   ];
   for (const dir of dirs) {
     const p = path.join(workDir, dir);
@@ -326,6 +342,53 @@ async function downloadAllFiles(workDir) {
     { url: `${base}/skills/13-game-development.md`, dest: `${KD_DIR}/skills/13-game-development.md` },
     { url: `${base}/skills/14-mobile-development.md`, dest: `${KD_DIR}/skills/14-mobile-development.md` },
     { url: `${base}/skills/15-documentation.md`, dest: `${KD_DIR}/skills/15-documentation.md` },
+    
+    // v5.0.0 - Agents YAML
+    { url: `${base}/agents/analyst.agent.yaml`, dest: `${KD_DIR}/agents/analyst.agent.yaml` },
+    { url: `${base}/agents/pm.agent.yaml`, dest: `${KD_DIR}/agents/pm.agent.yaml` },
+    { url: `${base}/agents/architect.agent.yaml`, dest: `${KD_DIR}/agents/architect.agent.yaml` },
+    { url: `${base}/agents/tech-lead.agent.yaml`, dest: `${KD_DIR}/agents/tech-lead.agent.yaml` },
+    { url: `${base}/agents/engineer.agent.yaml`, dest: `${KD_DIR}/agents/engineer.agent.yaml` },
+    { url: `${base}/agents/qa.agent.yaml`, dest: `${KD_DIR}/agents/qa.agent.yaml` },
+    { url: `${base}/agents/scrum-master.agent.yaml`, dest: `${KD_DIR}/agents/scrum-master.agent.yaml` },
+    { url: `${base}/agents/security.agent.yaml`, dest: `${KD_DIR}/agents/security.agent.yaml` },
+    { url: `${base}/agents/devops.agent.yaml`, dest: `${KD_DIR}/agents/devops.agent.yaml` },
+    { url: `${base}/agents/release-manager.agent.yaml`, dest: `${KD_DIR}/agents/release-manager.agent.yaml` },
+    { url: `${base}/agents/ux-designer.agent.yaml`, dest: `${KD_DIR}/agents/ux-designer.agent.yaml` },
+    { url: `${base}/agents/data-scientist.agent.yaml`, dest: `${KD_DIR}/agents/data-scientist.agent.yaml` },
+    { url: `${base}/agents/mobile-developer.agent.yaml`, dest: `${KD_DIR}/agents/mobile-developer.agent.yaml` },
+    { url: `${base}/agents/database-admin.agent.yaml`, dest: `${KD_DIR}/agents/database-admin.agent.yaml` },
+    { url: `${base}/agents/solo-dev.agent.yaml`, dest: `${KD_DIR}/agents/solo-dev.agent.yaml` },
+    
+    // v5.0.0 - Gates
+    { url: `${base}/gates/discovery-exit.md`, dest: `${KD_DIR}/gates/discovery-exit.md` },
+    { url: `${base}/gates/requirements-exit.md`, dest: `${KD_DIR}/gates/requirements-exit.md` },
+    { url: `${base}/gates/architecture-exit.md`, dest: `${KD_DIR}/gates/architecture-exit.md` },
+    { url: `${base}/gates/implementation-exit.md`, dest: `${KD_DIR}/gates/implementation-exit.md` },
+    { url: `${base}/gates/quality-exit.md`, dest: `${KD_DIR}/gates/quality-exit.md` },
+    { url: `${base}/gates/deployment-exit.md`, dest: `${KD_DIR}/gates/deployment-exit.md` },
+    { url: `${base}/gates/release-exit.md`, dest: `${KD_DIR}/gates/release-exit.md` },
+    
+    // v5.0.0 - Knowledge
+    { url: `${base}/knowledge/kd-index.md`, dest: `${KD_DIR}/knowledge/kd-index.md` },
+    { url: `${base}/knowledge/patterns/auth-patterns.md`, dest: `${KD_DIR}/knowledge/patterns/auth-patterns.md` },
+    { url: `${base}/knowledge/patterns/api-patterns.md`, dest: `${KD_DIR}/knowledge/patterns/api-patterns.md` },
+    { url: `${base}/knowledge/patterns/database-patterns.md`, dest: `${KD_DIR}/knowledge/patterns/database-patterns.md` },
+    { url: `${base}/knowledge/patterns/security-patterns.md`, dest: `${KD_DIR}/knowledge/patterns/security-patterns.md` },
+    { url: `${base}/knowledge/standards/code-style.md`, dest: `${KD_DIR}/knowledge/standards/code-style.md` },
+    { url: `${base}/knowledge/standards/naming-conventions.md`, dest: `${KD_DIR}/knowledge/standards/naming-conventions.md` },
+    { url: `${base}/knowledge/standards/documentation-standards.md`, dest: `${KD_DIR}/knowledge/standards/documentation-standards.md` },
+    
+    // v5.0.0 - Config Additional
+    { url: `${base}/config/scale-taxonomy.yaml`, dest: `${KD_DIR}/config/scale-taxonomy.yaml` },
+    { url: `${base}/config/agents/names.json`, dest: `${KD_DIR}/config/agents/names.json` },
+    
+    // v5.0.0 - Templates Additional
+    { url: `${base}/templates/tech-stack.md`, dest: `${KD_DIR}/templates/tech-stack.md` },
+    { url: `${base}/templates/phase-gate-report.md`, dest: `${KD_DIR}/templates/phase-gate-report.md` },
+    
+    // v5.0.0 - Workflows Index
+    { url: `${base}/core/indexes/workflows-index.md`, dest: `${KD_DIR}/core/indexes/workflows-index.md` },
   ];
 
   for (const f of files) {

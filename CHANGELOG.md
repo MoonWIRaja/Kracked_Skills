@@ -1,1 +1,62 @@
-# Changelog All notable changes to this project will be documented in this file. ## [5.0.0] - 2026-02-17 ### Added - **Complete Adapter Synchronization**: All 6 adapters now have identical 89 command/workflow files each. - **New Adapter Commands**: All adapters now include: - `KD-role-data-scientist` - Data pipeline design, ML models, analytics - `KD-role-mobile-dev` - iOS, Android, cross-platform development - `KD-role-dba` - Database design, optimization, maintenance - `KD-test-sprite` - Automated visual and functional testing - `KD-tool-selector` - Context-aware technology recommendations ### Changed - **VERSION**: Updated to 5.0.0 - **install.sh**: Version updated to 5.0.0 - All adapters now have consistent command coverage ### Adapters Status - **Claude Code**: 89 commands in `.claude/commands/` - **Cursor**: 89 commands in `.cursor/commands/` - **Antigravity**: 89 workflows in `.agent/workflows/` - **Cline**: 89 workflows in `.cline/workflows/` - **Kilo Code**: 89 workflows in `.kilocode/workflows/` - **Roo Code**: 89 commands in `.roo/commands/` ## [4.0.1] - 2026-02-16 ### Added - **New Adapters**: Cline, Kilo Code, Roo Code support with full workflow/command files. - **Adapter Files**: - `.clinerules` for Cline with workflows in `.cline/workflows/` - `.kilocode` for Kilo Code with workflows in `.kilocode/workflows/` - `.roo` for Roo Code with commands in `.roo/commands/` - **VERSION file**: Added for version tracking by update.sh. ### Changed - **install.sh**: Now deploys workflow/command files for all 6 adapters (Claude Code, Cursor, Antigravity, Cline, Kilo Code, Roo Code). - **uninstall.sh**: Now removes all adapter files and directories including Cline, Kilo Code, Roo Code. - **update.sh**: Updated to handle new adapter targets. ### Fixed - Installer now properly deploys command files for all adapters during installation. ## [4.0.0] - 2026-02-16 ### Added - **New Roles**: UX Designer, Data Scientist, Mobile Developer, Database Administrator. - **Smart Role Switcher**: Regex-based auto-detection of roles based on user input. - **Multi-Agent Systems**: Handoff protocols, conflict resolution (weighted voting), and personality profiles for agents. - **TestSprite Integration**: Automated visual regression testing framework (Puppeteer + pixelmatch). - **Tool Selector**: Context-aware tool recommendation system. - **Git Integration**: Auto-commit scripts with conventional commit messages. - **Analytics**: simple JSON-based tracking of agent performance. - **Exporters**: Scripts to export project data to Consolidated Markdown, Jira CSV, and PDF. - **Artifact Manifest**: YAML-based tracking of generated artifacts. ### Changed - **Directory Structure**: significantly expanded `src/` directory to house new components. - **Installer**: Updated `install.sh` and `install.ps1` to deploy new components. - **Updater**: Updated `update.sh` and `update.ps1` to support v4.0.0. ### Removed - None. ## [3.0.0] - Previous Version - Initial stable release of Kracked_Skills.
+# KD Changelog
+
+All notable changes to the Kracked_Skills (KD) project will be documented in this file.
+
+## [5.0.0] - 2026-02-19
+
+### Major Upgrade — Phase-Gate Architecture
+
+#### Added
+- **Agent YAML Files**: 15 agent definitions with skills mapping
+  - `src/agents/*.agent.yaml`
+  - Includes: analyst, pm, architect, tech-lead, engineer, qa, security, devops, release-manager, ux-designer, data-scientist, mobile-developer, database-admin, scrum-master, solo-dev
+
+- **Phase Gates**: 7 exit gate documents
+  - `src/gates/discovery-exit.md`
+  - `src/gates/requirements-exit.md`
+  - `src/gates/architecture-exit.md`
+  - `src/gates/implementation-exit.md`
+  - `src/gates/quality-exit.md`
+  - `src/gates/deployment-exit.md`
+  - `src/gates/release-exit.md`
+
+- **Workflows**: Complete workflow system (~60 files)
+  - Discovery: analyze, brainstorm, domain-research
+  - Planning: prd-create, prd-validate, epics-stories
+  - Architecture: design
+  - Implementation: dev-story, code-review
+  - Deployment: plan
+  - Release: notes
+
+- **Knowledge Base**: 8 pattern/standard files
+  - `src/knowledge/patterns/auth-patterns.md`
+  - `src/knowledge/patterns/api-patterns.md`
+  - `src/knowledge/patterns/database-patterns.md`
+  - `src/knowledge/patterns/security-patterns.md`
+  - `src/knowledge/standards/code-style.md`
+  - `src/knowledge/standards/naming-conventions.md`
+  - `src/knowledge/standards/documentation-standards.md`
+
+- **Scale Taxonomy**: Project scale detection
+  - `src/config/scale-taxonomy.yaml`
+  - SMALL, STANDARD, DEEP scales with workflow depth adjustment
+
+- **Agent Names Configuration**
+  - `src/config/agents/names.json`
+
+#### Changed
+- Updated `roles-index.md` to reference agent YAML files
+- Added `workflows-index.md` for workflow navigation
+- Enhanced workflow structure with step-by-step instructions
+
+#### Architecture
+- Phase-gate model implementation
+- Agent-first approach
+- Scale-aware workflows
+- Knowledge-driven development
+
+### Previous Versions
+- v4.x: Initial modular structure
+- v3.x: Multi-agent support
+- v2.x: Role-based system
+- v1.x: Basic project structure

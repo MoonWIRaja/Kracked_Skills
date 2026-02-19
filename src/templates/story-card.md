@@ -47,6 +47,25 @@
 
 ---
 
+## Technical Context (from Architecture)
+| Component | Details | Source |
+|-----------|---------|--------|
+| Frontend | | architecture.md |
+| Backend | | architecture.md |
+| Database | | architecture.md |
+| API | | architecture.md |
+
+## Skills Required
+| Skill ID | Skill Name | Priority |
+|----------|------------|----------|
+| | | |
+
+## Tools Needed
+- [ ] TestSprite (browser testing)
+- [ ] GitHub Reader (reference code)
+
+---
+
 ## Dependencies
 | Dependency | Type | Status |
 |-----------|------|--------|

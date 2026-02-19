@@ -20,6 +20,17 @@
 - Active Story: None
 - Blockers: None
 
+## Phase Gates
+| Phase | Gate Status | Artifact | Gate File |
+|-------|-------------|----------|-----------|
+| Discovery | ⏳ Pending | product-brief.md | discovery-exit.md |
+| Requirements | 🔒 Locked | prd.md | requirements-exit.md |
+| Architecture | 🔒 Locked | architecture.md | architecture-exit.md |
+| Implementation | 🔒 Locked | story files | implementation-exit.md |
+| Quality | 🔒 Locked | test results | quality-exit.md |
+| Deployment | 🔒 Locked | deployment-plan.md | deployment-exit.md |
+| Release | 🔒 Locked | release-notes.md | release-exit.md |
+
 ## Completed Stages
 | Stage | Status | Completed | Key Artifact |
 |-------|--------|-----------|-------------|

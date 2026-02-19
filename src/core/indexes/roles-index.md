@@ -27,11 +27,24 @@
 /KD-role-[name]
 ```
 
-## Role Details Location
+## Role Definition Files
 
-```
-.kracked/prompts/roles/[role-name].md
-```
+Each role has a YAML definition in `.kracked/agents/`:
+- `analyst.agent.yaml`
+- `pm.agent.yaml`
+- `architect.agent.yaml`
+- `tech-lead.agent.yaml`
+- `engineer.agent.yaml`
+- `qa.agent.yaml`
+- `scrum-master.agent.yaml`
+- `security.agent.yaml`
+- `devops.agent.yaml`
+- `release-manager.agent.yaml`
+- `ux-designer.agent.yaml`
+- `data-scientist.agent.yaml`
+- `mobile-developer.agent.yaml`
+- `database-admin.agent.yaml`
+- `solo-dev.agent.yaml`
 
 ## Rules
 

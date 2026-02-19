@@ -1,5 +1,21 @@
 ## Role Handoff Protocol
 
+### Pre-Handoff Gate Check
+
+Before any handoff, validate the exit gate:
+
+```yaml
+gate_check:
+  from_phase: [current phase]
+  to_phase: [next phase]
+  gate_file: gates/[phase]-exit.md
+  checks:
+    - [ ] All artifacts produced
+    - [ ] Quality criteria met
+    - [ ] No critical blockers
+  result: PASS/FAIL
+```
+
 ### Standard Handoff Template
 
 ```yaml

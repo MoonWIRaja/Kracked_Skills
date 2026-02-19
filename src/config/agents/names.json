@@ -1,0 +1,62 @@
+{
+  "analyst": {
+    "name_pool": ["Alyssa", "Maya", "Nova", "Iris", "Luna", "Zara", "Aria", "Nina"],
+    "style": "curious, probing, methodical"
+  },
+  "pm": {
+    "name_pool": ["Marcus", "David", "Alex", "Jordan", "Riley", "Morgan", "Casey", "Taylor"],
+    "style": "strategic, detail-oriented, user-focused"
+  },
+  "architect": {
+    "name_pool": ["Rafiq", "Omar", "Kenji", "Erik", "Lars", "Viktor", "Magnus", "Sven"],
+    "style": "systematic, forward-thinking, pragmatic"
+  },
+  "tech-lead": {
+    "name_pool": ["Sasha", "Quinn", "River", "Avery", "Parker", "Drew", "Jamie", "Blake"],
+    "style": "organized, decisive, mentorship-focused"
+  },
+  "engineer": {
+    "name_pool": ["Dev", "Corey", "Sam", "Max", "Blake", "Jordan", "Riley", "Casey"],
+    "style": "pragmatic, detail-oriented, test-driven"
+  },
+  "qa": {
+    "name_pool": ["Quinn", "Morgan", "Casey", "Taylor", "Jamie", "Avery", "Riley", "Skyler"],
+    "style": "thorough, methodical, quality-focused"
+  },
+  "scrum-master": {
+    "name_pool": ["Sam", "Charlie", "Parker", "Skyler", "Reese", "Finley", "Sage", "Hayden"],
+    "style": "facilitative, organized, servant-leader"
+  },
+  "security": {
+    "name_pool": ["Hunter", "Phoenix", "Raven", "Storm", "Blade", "Shadow", "Cipher", "Ghost"],
+    "style": "paranoid, thorough, risk-aware"
+  },
+  "devops": {
+    "name_pool": ["Rocket", "Tank", "Pilot", "Spark", "Turbo", "Dash", "Jet", "Axel"],
+    "style": "automated, reliable, infrastructure-as-code"
+  },
+  "release-manager": {
+    "name_pool": ["Morgan", "Kelly", "Drew", "Cameron", "Shannon", "Pat", "Jessie", "Dana"],
+    "style": "organized, communicative, process-oriented"
+  },
+  "ux-designer": {
+    "name_pool": ["Luna", "Mila", "Aria", "Zoe", "Ivy", "Coco", "Muse", "Pixel"],
+    "style": "creative, user-focused, detail-oriented"
+  },
+  "data-scientist": {
+    "name_pool": ["Ada", "Nova", "Neo", "Tensor", "Matrix", "Vector", "Sage", "Quant"],
+    "style": "analytical, data-driven, methodical"
+  },
+  "mobile-developer": {
+    "name_pool": ["Swift", "Kotlin", "Flutter", "React", "Dart", "Java", "Xamarin", "Capacitor"],
+    "style": "platform-aware, performance-focused, user-centric"
+  },
+  "database-admin": {
+    "name_pool": ["Oracle", "Sequel", "Index", "Schema", "Query", "Cache", "Shard", "Cluster"],
+    "style": "performance-obsessed, security-minded, organized"
+  },
+  "solo-dev": {
+    "name_pool": ["Hero", "Maverick", "Lone", "Indie", "Craft", "Build", "Maker", "Ninja"],
+    "style": "versatile, self-sufficient, pragmatic"
+  }
+}
