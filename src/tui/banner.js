@@ -11,8 +11,8 @@ export function showBanner() {
 ║                                                                       ║
 ║   ${chalk.white('██╗  ██╗██████╗')}                                                     ║
 ║   ${chalk.white('██║ ██╔╝██╔══██╗')}                                                    ║
-║   ${chalk.white('██████╔╝ ██║  ██║')}    ${chalk.yellow('AI Skill by KRACKEDDEVS')}                          ║
-║   ${chalk.white('██╔═██╗ ██║  ██║')}    ${chalk.blue('https://krackeddevs.com/')}                         ║
+║   ${chalk.white('██████╔╝ ██║  ██║')}    ${chalk.yellow('AI Skill by KRACKEDDEVS')}                         ║
+║   ${chalk.white('██╔═██╗ ██║  ██║')}    ${chalk.blue('https://krackeddevs.com/')}                        ║
 ║   ${chalk.white('██║  ██╗██████╔╝')}                                                    ║
 ║   ${chalk.white('╚═╝  ╚═╝╚═════╝')}                                                     ║
 ║                                                                       ║
