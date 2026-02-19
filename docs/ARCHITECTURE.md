@@ -8,19 +8,19 @@ KD operates as a prompt-based system that guides AI tools through a structured p
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     AI TOOL                             │
-│  (Claude Code / Cursor / Antigravity / Cline /     │
-│   Kilo Code / Roo)                                  │
+│                     AI TOOL                                 │
+│  (Claude Code / Cursor / Antigravity / Cline /              │
+│   Kilo Code / Roo)                                          │
 ├─────────────────────────────────────────────────────────────┤
-│                     ADAPTER                             │
-│  (CLAUDE.md / .cursorrules / SKILL.md /            │
-│   .clinerules / .kilocode / .roo)                 │
+│                     ADAPTER                                 │
+│  (CLAUDE.md / .cursorrules / SKILL.md /                     │
+│   .clinerules / .kilocode / .roo)                           │
 ├─────────────────────────────────────────────────────────────┤
-│                  SYSTEM PROMPT                          │
-│              (system-prompt.md)                         │
+│                  SYSTEM PROMPT                              │
+│              (system-prompt.md)                             │
 ├──────────┬──────────┬──────────┬──────────┬────────────────┤
-│  ROLES  │  STAGES  │ MULTI-   │   TOOL     │ TESTSPRITE    │
-│  (13)   │  (8)     │  AGENT   │  SELECTOR  │               │
+│  ROLES   │  STAGES  │ MULTI-   │   TOOL     │ TESTSPRITE    │
+│  (13)    │  (8)     │  AGENT   │  SELECTOR  │               │
 ├──────────┴──────────┴──────────┴──────────┴────────────────┤
 │        TEMPLATES (9)  │  CHECKLISTS (6)  │  WORKFLOWS │  ANALYTICS │
 ├─────────────────────────────────────────────────────────────┤

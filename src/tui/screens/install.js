@@ -34,6 +34,7 @@ const LANGUAGES = [
 // Full command list - synced with src/adapters/*/commands and workflows
 const COMMANDS = [
   'KD', 'KD-analyze', 'KD-api-design', 'KD-architecture', 'KD-brainstorm',
+  'KD-github-read',
   'KD-build-agent', 'KD-build-module', 'KD-build-workflow', 'KD-code-review',
   'KD-deployment-plan', 'KD-dev-story', 'KD-doc-project', 'KD-domain-research',
   'KD-epics-and-stories', 'KD-fix-course', 'KD-game-arch', 'KD-game-architect',
@@ -171,6 +172,9 @@ function createDirectories(workDir) {
     `${KD_DIR}/KD_output/architecture`, `${KD_DIR}/KD_output/epics-and-stories`,
     `${KD_DIR}/KD_output/code-review`, `${KD_DIR}/KD_output/deployment`,
     `${KD_DIR}/KD_output/release`, `${KD_DIR}/KD_output/decisions`, `${KD_DIR}/KD_output/risks`,
+    // TestSprite & GitHub Reader
+    `${KD_DIR}/github-reader`, `${KD_DIR}/KD_output/testsprite`, `${KD_DIR}/KD_output/testsprite/screenshots`,
+    `${KD_DIR}/KD_output/testsprite/videos`, `${KD_DIR}/KD_output/github-reader`,
   ];
   for (const dir of dirs) {
     const p = path.join(workDir, dir);
@@ -265,7 +269,12 @@ async function downloadAllFiles(workDir) {
     
     // TestSprite
     { url: `${base}/testsprite/testsprite-core.js`, dest: `${KD_DIR}/testsprite/testsprite-core.js` },
+    { url: `${base}/testsprite/browser-setup.js`, dest: `${KD_DIR}/testsprite/browser-setup.js` },
     { url: `${base}/commands/testsprite.js`, dest: `${KD_DIR}/testsprite/run.js` },
+    
+    // GitHub Reader
+    { url: `${base}/github-reader/github-reader.js`, dest: `${KD_DIR}/github-reader/github-reader.js` },
+    { url: `${base}/github-reader/kd-github-read.js`, dest: `${KD_DIR}/github-reader/kd-github-read.js` },
     
     // Tool Selector
     { url: `${base}/tool-selector/tool-selector.js`, dest: `${KD_DIR}/tool-selector/tool-selector.js` },
