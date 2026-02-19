@@ -60,13 +60,13 @@ export async function mainMenu(options = {}) {
     try {
       switch (item.value) {
         case 'install':
-          await installKD(options);
+          await installKD({ ...options, installDir: options.installDir || process.cwd() });
           break;
         case 'update':
-          await updateKD(options);
+          await updateKD({ ...options, installDir: options.installDir || process.cwd() });
           break;
         case 'uninstall':
-          await uninstallKD(options);
+          await uninstallKD({ ...options, installDir: options.installDir || process.cwd() });
           break;
         case 'about':
           await showAbout();

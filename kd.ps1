@@ -47,8 +47,8 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     exit 1
 }
 
-# Save original directory
-$ORIGINAL_DIR = Get-Location
+# Save original directory (as string)
+$ORIGINAL_DIR = (Get-Location).Path
 
 # Check if we're in KD repo directory
 if (Test-Path "kd.js") {
@@ -115,8 +115,8 @@ if (Test-Path "kd.js") {
     Write-Host "  Launching KD TUI..." -ForegroundColor Green
     Write-Host ""
     
-    # Build args with install-dir
-    $args = @("--install-dir", $ORIGINAL_DIR.Path, "--no-banner")
+    # Build args with install-dir (quote the path for spaces)
+    $args = @("--install-dir=`"$ORIGINAL_DIR`"", "--no-banner")
     if ($Command) { $args = @($Command) + $args }
     if ($Target) { $args += "--target", $Target }
     if ($Language) { $args += "--lang", $Language }
