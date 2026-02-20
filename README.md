@@ -28,14 +28,12 @@ AI Skill by <a href="https://krackeddevs.com/">KRACKEDDEVS</a>
 ### Install (All Platforms)
 
 ```bash
-# macOS / Linux / Git Bash
+# macOS / Linux 
 curl -fsSL https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/kd.sh | bash
 
-# Windows PowerShell
+# Windows (PowerShell Only)
 irm https://raw.githubusercontent.com/MoonWIRaja/Kracked_Skills/main/kd.ps1 | iex
 
-# Or directly with Node.js
-node kd.js install
 ```
 
 ### After Installation
